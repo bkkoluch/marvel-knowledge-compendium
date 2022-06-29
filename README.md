@@ -1,16 +1,30 @@
-# marvel_knowledge_compendium
+# Marvel Knowledge Compendium
 
-A Flutter project letting you find information related to Marvel universe and it's heroes.
+A Flutter app letting you find information related to Marvel universe and it's heroes.
 
-## Getting Started
+Project was created with Clean Architecture in mind.
 
-This project is a starting point for a Flutter application.
+| Type  | Used dependency |
+|---|---|
+| Navigation | [auto_route](https://pub.dev/packages/auto_route) |
+| Http client |  [dio](https://pub.dev/packages/dio) |
+| Local storage | [shared_preferences](https://pub.dev/packages/shared_preferences)  |
+| Testing mocks | [mocktail](https://pub.dev/packages/mocktail)  |
+| Code generation | [freezed](https://pub.dev/packages/freezed) [json_serializable](https://pub.dev/packages/json_serializable)|
+| State management  |  [flutter_bloc](https://pub.dev/packages/flutter_bloc) |
+| Dependency injection | [get_it](https://pub.dev/packages/get_it) [injectable](https://pub.dev/packages/injectable) |
+| Functional programming | [dartz](https://pub.dev/packages/dartz)  |
 
-A few resources to get you started if this is your first Flutter project:
+## How to run the project
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+#### You should have a valid `keys.dart` file containing secrets.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+#### Get all dependencies by running command:
+
+`flutter pub get`
+
+## Tests
+
+#### To run all tests (unit/widget/cubit & bloc)
+
+`flutter test`
