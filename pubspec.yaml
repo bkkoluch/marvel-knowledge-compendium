@@ -1,0 +1,39 @@
+name: marvel_knowledge_compendium
+description: A Flutter project letting you find information related to Marvel universe and it's heroes.
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.17.1 <3.0.0"
+
+dependencies:
+  auto_route: ^4.0.1
+  auto_size_text: ^3.0.0
+  cupertino_icons: ^1.0.5
+  dartz: ^0.10.1
+  dio: ^4.0.6
+  flutter:
+    sdk: flutter
+  flutter_bloc: ^8.0.1
+  freezed_annotation: ^2.0.3
+  get_it: ^7.2.0
+  google_fonts: ^3.0.1
+  mocktail: ^0.3.0
+  pretty_dio_logger: ^1.1.1
+
+dev_dependencies:
+  auto_route_generator: ^4.0.0
+  bloc_test: ^9.0.3
+  build_runner: ^2.1.11
+  flutter_lints: ^2.0.1
+  flutter_test:
+    sdk: flutter
+  freezed: ^2.0.3+1
+  injectable_generator:
+  json_serializable: ^6.2.0
+
+flutter:
+  uses-material-design: true
+

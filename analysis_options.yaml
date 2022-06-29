@@ -1,0 +1,32 @@
+analyzer:
+  exclude:
+    - "packages"
+    - lib/**.g.dart
+    - lib/.dart_tool
+    - lib/generated/**
+    - lib/**.freezed.dart
+    - lib/generated_plugin_registrant.dart
+    - lib/core/injector/injector.config.dart
+
+  errors:
+    missing_required_param: error
+    invalid_use_of_visible_for_testing_member: error
+    unused_import: error
+    always_use_package_imports: error
+    unawaited_futures: error
+    invalid_annotation_target: ignore
+
+linter:
+  rules:
+    - always_put_required_named_parameters_first
+    - always_require_non_null_named_parameters
+    - always_declare_return_types
+    - always_use_package_imports
+    - prefer_asserts_in_initializer_lists
+    - prefer_const_constructors
+    - prefer_const_declarations
+    - avoid_print
+    - await_only_futures
+    - sort_pub_dependencies
+    - unawaited_futures
+    - require_trailing_commas
