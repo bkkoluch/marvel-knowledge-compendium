@@ -10,7 +10,7 @@ class MarvelKnowledgeCompendiumApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => MaterialApp.router(
-        title: 'Looping Diary',
+        title: 'Marvel Knowledge Compendium',
         theme: ThemedData.lightThemeData,
         routerDelegate: _appRouter.delegate(),
         routeInformationParser: _appRouter.defaultRouteParser(),

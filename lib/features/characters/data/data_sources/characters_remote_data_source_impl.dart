@@ -14,27 +14,15 @@ class CharactersRemoteDataSourceImpl implements CharactersRemoteDataSource {
   const CharactersRemoteDataSourceImpl(this.dioClient);
 
   @override
-  Future<CharacterDataWrapperDto> getCharactersList() async {
-    try {
-      final response = await dioClient.dio.get(Endpoints.characters());
-      return CharacterDataWrapperDto.fromJson(
-        response.data,
-        (characterDataWrapperData) => CharacterDataContainerDto.fromJson(
-          characterDataWrapperData as Map<String, dynamic>,
-          (characterDtoData) => CharacterDto.fromJson(
-            characterDtoData as Map<String, dynamic>,
-          ),
-        ),
-      );
-    } catch (e) {
-      throw ServerException(e, '', stackTrace: StackTrace.current);
-    }
-  }
+  Future<CharacterDataWrapperDto> getCharactersList() async => await _fetchCharacterData();
 
   @override
-  Future<CharacterDataWrapperDto> getCharacterById(String characterId) async {
+  Future<CharacterDataWrapperDto> getCharacterById(String characterId) async => await _fetchCharacterData(characterId);
+
+  Future<CharacterDataWrapperDto> _fetchCharacterData([String? characterId]) async {
     try {
-      final response = await dioClient.dio.get(Endpoints.characterById(characterId));
+      final response =
+          await dioClient.dio.get(characterId == null ? Endpoints.characters() : Endpoints.characterById(characterId));
       return CharacterDataWrapperDto.fromJson(
         response.data,
         (characterDataWrapperData) => CharacterDataContainerDto.fromJson(
@@ -45,6 +33,7 @@ class CharactersRemoteDataSourceImpl implements CharactersRemoteDataSource {
         ),
       );
     } catch (e) {
+      print(e);
       throw ServerException(e, '', stackTrace: StackTrace.current);
     }
   }

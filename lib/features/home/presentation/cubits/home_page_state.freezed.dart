@@ -18,6 +18,8 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$HomePageState {
   HomePageStateStatus get status => throw _privateConstructorUsedError;
   List<String> get homePageImages => throw _privateConstructorUsedError;
+  DataWrapper<DataContainer<Character>>? get unfilteredCharacterDataWrapper =>
+      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $HomePageStateCopyWith<HomePageState> get copyWith =>
@@ -29,7 +31,13 @@ abstract class $HomePageStateCopyWith<$Res> {
   factory $HomePageStateCopyWith(
           HomePageState value, $Res Function(HomePageState) then) =
       _$HomePageStateCopyWithImpl<$Res>;
-  $Res call({HomePageStateStatus status, List<String> homePageImages});
+  $Res call(
+      {HomePageStateStatus status,
+      List<String> homePageImages,
+      DataWrapper<DataContainer<Character>>? unfilteredCharacterDataWrapper});
+
+  $DataWrapperCopyWith<DataContainer<Character>, $Res>?
+      get unfilteredCharacterDataWrapper;
 }
 
 /// @nodoc
@@ -45,6 +53,7 @@ class _$HomePageStateCopyWithImpl<$Res>
   $Res call({
     Object? status = freezed,
     Object? homePageImages = freezed,
+    Object? unfilteredCharacterDataWrapper = freezed,
   }) {
     return _then(_value.copyWith(
       status: status == freezed
@@ -55,7 +64,24 @@ class _$HomePageStateCopyWithImpl<$Res>
           ? _value.homePageImages
           : homePageImages // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      unfilteredCharacterDataWrapper: unfilteredCharacterDataWrapper == freezed
+          ? _value.unfilteredCharacterDataWrapper
+          : unfilteredCharacterDataWrapper // ignore: cast_nullable_to_non_nullable
+              as DataWrapper<DataContainer<Character>>?,
     ));
+  }
+
+  @override
+  $DataWrapperCopyWith<DataContainer<Character>, $Res>?
+      get unfilteredCharacterDataWrapper {
+    if (_value.unfilteredCharacterDataWrapper == null) {
+      return null;
+    }
+
+    return $DataWrapperCopyWith<DataContainer<Character>, $Res>(
+        _value.unfilteredCharacterDataWrapper!, (value) {
+      return _then(_value.copyWith(unfilteredCharacterDataWrapper: value));
+    });
   }
 }
 
@@ -66,7 +92,14 @@ abstract class _$$_HomePageStateCopyWith<$Res>
           _$_HomePageState value, $Res Function(_$_HomePageState) then) =
       __$$_HomePageStateCopyWithImpl<$Res>;
   @override
-  $Res call({HomePageStateStatus status, List<String> homePageImages});
+  $Res call(
+      {HomePageStateStatus status,
+      List<String> homePageImages,
+      DataWrapper<DataContainer<Character>>? unfilteredCharacterDataWrapper});
+
+  @override
+  $DataWrapperCopyWith<DataContainer<Character>, $Res>?
+      get unfilteredCharacterDataWrapper;
 }
 
 /// @nodoc
@@ -84,6 +117,7 @@ class __$$_HomePageStateCopyWithImpl<$Res>
   $Res call({
     Object? status = freezed,
     Object? homePageImages = freezed,
+    Object? unfilteredCharacterDataWrapper = freezed,
   }) {
     return _then(_$_HomePageState(
       status: status == freezed
@@ -94,6 +128,10 @@ class __$$_HomePageStateCopyWithImpl<$Res>
           ? _value._homePageImages
           : homePageImages // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      unfilteredCharacterDataWrapper: unfilteredCharacterDataWrapper == freezed
+          ? _value.unfilteredCharacterDataWrapper
+          : unfilteredCharacterDataWrapper // ignore: cast_nullable_to_non_nullable
+              as DataWrapper<DataContainer<Character>>?,
     ));
   }
 }
@@ -102,7 +140,9 @@ class __$$_HomePageStateCopyWithImpl<$Res>
 
 class _$_HomePageState extends _HomePageState {
   const _$_HomePageState(
-      {required this.status, required final List<String> homePageImages})
+      {required this.status,
+      required final List<String> homePageImages,
+      this.unfilteredCharacterDataWrapper})
       : _homePageImages = homePageImages,
         super._();
 
@@ -116,8 +156,11 @@ class _$_HomePageState extends _HomePageState {
   }
 
   @override
+  final DataWrapper<DataContainer<Character>>? unfilteredCharacterDataWrapper;
+
+  @override
   String toString() {
-    return 'HomePageState(status: $status, homePageImages: $homePageImages)';
+    return 'HomePageState(status: $status, homePageImages: $homePageImages, unfilteredCharacterDataWrapper: $unfilteredCharacterDataWrapper)';
   }
 
   @override
@@ -127,14 +170,18 @@ class _$_HomePageState extends _HomePageState {
             other is _$_HomePageState &&
             const DeepCollectionEquality().equals(other.status, status) &&
             const DeepCollectionEquality()
-                .equals(other._homePageImages, _homePageImages));
+                .equals(other._homePageImages, _homePageImages) &&
+            const DeepCollectionEquality().equals(
+                other.unfilteredCharacterDataWrapper,
+                unfilteredCharacterDataWrapper));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(status),
-      const DeepCollectionEquality().hash(_homePageImages));
+      const DeepCollectionEquality().hash(_homePageImages),
+      const DeepCollectionEquality().hash(unfilteredCharacterDataWrapper));
 
   @JsonKey(ignore: true)
   @override
@@ -145,13 +192,18 @@ class _$_HomePageState extends _HomePageState {
 abstract class _HomePageState extends HomePageState {
   const factory _HomePageState(
       {required final HomePageStateStatus status,
-      required final List<String> homePageImages}) = _$_HomePageState;
+      required final List<String> homePageImages,
+      final DataWrapper<DataContainer<Character>>?
+          unfilteredCharacterDataWrapper}) = _$_HomePageState;
   const _HomePageState._() : super._();
 
   @override
   HomePageStateStatus get status => throw _privateConstructorUsedError;
   @override
   List<String> get homePageImages => throw _privateConstructorUsedError;
+  @override
+  DataWrapper<DataContainer<Character>>? get unfilteredCharacterDataWrapper =>
+      throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$$_HomePageStateCopyWith<_$_HomePageState> get copyWith =>

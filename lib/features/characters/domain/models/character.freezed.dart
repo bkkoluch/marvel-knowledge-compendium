@@ -22,7 +22,7 @@ mixin _$Character {
   DateTime? get modified => throw _privateConstructorUsedError;
   String? get resourceURI => throw _privateConstructorUsedError;
   List<Url>? get urls => throw _privateConstructorUsedError;
-  Image? get image => throw _privateConstructorUsedError;
+  Image? get thumbnail => throw _privateConstructorUsedError;
   GenericList<CommonSummary>? get comics => throw _privateConstructorUsedError;
   GenericList<StorySummary>? get stories => throw _privateConstructorUsedError;
   GenericList<CommonSummary>? get events => throw _privateConstructorUsedError;
@@ -44,13 +44,13 @@ abstract class $CharacterCopyWith<$Res> {
       DateTime? modified,
       String? resourceURI,
       List<Url>? urls,
-      Image? image,
+      Image? thumbnail,
       GenericList<CommonSummary>? comics,
       GenericList<StorySummary>? stories,
       GenericList<CommonSummary>? events,
       GenericList<CommonSummary>? series});
 
-  $ImageCopyWith<$Res>? get image;
+  $ImageCopyWith<$Res>? get thumbnail;
   $GenericListCopyWith<CommonSummary, $Res>? get comics;
   $GenericListCopyWith<StorySummary, $Res>? get stories;
   $GenericListCopyWith<CommonSummary, $Res>? get events;
@@ -73,7 +73,7 @@ class _$CharacterCopyWithImpl<$Res> implements $CharacterCopyWith<$Res> {
     Object? modified = freezed,
     Object? resourceURI = freezed,
     Object? urls = freezed,
-    Object? image = freezed,
+    Object? thumbnail = freezed,
     Object? comics = freezed,
     Object? stories = freezed,
     Object? events = freezed,
@@ -104,9 +104,9 @@ class _$CharacterCopyWithImpl<$Res> implements $CharacterCopyWith<$Res> {
           ? _value.urls
           : urls // ignore: cast_nullable_to_non_nullable
               as List<Url>?,
-      image: image == freezed
-          ? _value.image
-          : image // ignore: cast_nullable_to_non_nullable
+      thumbnail: thumbnail == freezed
+          ? _value.thumbnail
+          : thumbnail // ignore: cast_nullable_to_non_nullable
               as Image?,
       comics: comics == freezed
           ? _value.comics
@@ -128,13 +128,13 @@ class _$CharacterCopyWithImpl<$Res> implements $CharacterCopyWith<$Res> {
   }
 
   @override
-  $ImageCopyWith<$Res>? get image {
-    if (_value.image == null) {
+  $ImageCopyWith<$Res>? get thumbnail {
+    if (_value.thumbnail == null) {
       return null;
     }
 
-    return $ImageCopyWith<$Res>(_value.image!, (value) {
-      return _then(_value.copyWith(image: value));
+    return $ImageCopyWith<$Res>(_value.thumbnail!, (value) {
+      return _then(_value.copyWith(thumbnail: value));
     });
   }
 
@@ -196,14 +196,14 @@ abstract class _$$_CharacterCopyWith<$Res> implements $CharacterCopyWith<$Res> {
       DateTime? modified,
       String? resourceURI,
       List<Url>? urls,
-      Image? image,
+      Image? thumbnail,
       GenericList<CommonSummary>? comics,
       GenericList<StorySummary>? stories,
       GenericList<CommonSummary>? events,
       GenericList<CommonSummary>? series});
 
   @override
-  $ImageCopyWith<$Res>? get image;
+  $ImageCopyWith<$Res>? get thumbnail;
   @override
   $GenericListCopyWith<CommonSummary, $Res>? get comics;
   @override
@@ -232,7 +232,7 @@ class __$$_CharacterCopyWithImpl<$Res> extends _$CharacterCopyWithImpl<$Res>
     Object? modified = freezed,
     Object? resourceURI = freezed,
     Object? urls = freezed,
-    Object? image = freezed,
+    Object? thumbnail = freezed,
     Object? comics = freezed,
     Object? stories = freezed,
     Object? events = freezed,
@@ -263,9 +263,9 @@ class __$$_CharacterCopyWithImpl<$Res> extends _$CharacterCopyWithImpl<$Res>
           ? _value._urls
           : urls // ignore: cast_nullable_to_non_nullable
               as List<Url>?,
-      image: image == freezed
-          ? _value.image
-          : image // ignore: cast_nullable_to_non_nullable
+      thumbnail: thumbnail == freezed
+          ? _value.thumbnail
+          : thumbnail // ignore: cast_nullable_to_non_nullable
               as Image?,
       comics: comics == freezed
           ? _value.comics
@@ -297,7 +297,7 @@ class _$_Character extends _Character {
       this.modified,
       this.resourceURI,
       final List<Url>? urls,
-      this.image,
+      this.thumbnail,
       this.comics,
       this.stories,
       this.events,
@@ -325,7 +325,7 @@ class _$_Character extends _Character {
   }
 
   @override
-  final Image? image;
+  final Image? thumbnail;
   @override
   final GenericList<CommonSummary>? comics;
   @override
@@ -337,7 +337,7 @@ class _$_Character extends _Character {
 
   @override
   String toString() {
-    return 'Character(id: $id, name: $name, description: $description, modified: $modified, resourceURI: $resourceURI, urls: $urls, image: $image, comics: $comics, stories: $stories, events: $events, series: $series)';
+    return 'Character(id: $id, name: $name, description: $description, modified: $modified, resourceURI: $resourceURI, urls: $urls, thumbnail: $thumbnail, comics: $comics, stories: $stories, events: $events, series: $series)';
   }
 
   @override
@@ -353,7 +353,7 @@ class _$_Character extends _Character {
             const DeepCollectionEquality()
                 .equals(other.resourceURI, resourceURI) &&
             const DeepCollectionEquality().equals(other._urls, _urls) &&
-            const DeepCollectionEquality().equals(other.image, image) &&
+            const DeepCollectionEquality().equals(other.thumbnail, thumbnail) &&
             const DeepCollectionEquality().equals(other.comics, comics) &&
             const DeepCollectionEquality().equals(other.stories, stories) &&
             const DeepCollectionEquality().equals(other.events, events) &&
@@ -369,7 +369,7 @@ class _$_Character extends _Character {
       const DeepCollectionEquality().hash(modified),
       const DeepCollectionEquality().hash(resourceURI),
       const DeepCollectionEquality().hash(_urls),
-      const DeepCollectionEquality().hash(image),
+      const DeepCollectionEquality().hash(thumbnail),
       const DeepCollectionEquality().hash(comics),
       const DeepCollectionEquality().hash(stories),
       const DeepCollectionEquality().hash(events),
@@ -389,7 +389,7 @@ abstract class _Character extends Character {
       final DateTime? modified,
       final String? resourceURI,
       final List<Url>? urls,
-      final Image? image,
+      final Image? thumbnail,
       final GenericList<CommonSummary>? comics,
       final GenericList<StorySummary>? stories,
       final GenericList<CommonSummary>? events,
@@ -409,7 +409,7 @@ abstract class _Character extends Character {
   @override
   List<Url>? get urls => throw _privateConstructorUsedError;
   @override
-  Image? get image => throw _privateConstructorUsedError;
+  Image? get thumbnail => throw _privateConstructorUsedError;
   @override
   GenericList<CommonSummary>? get comics => throw _privateConstructorUsedError;
   @override
