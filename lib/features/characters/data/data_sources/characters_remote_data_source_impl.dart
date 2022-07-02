@@ -33,7 +33,6 @@ class CharactersRemoteDataSourceImpl implements CharactersRemoteDataSource {
         ),
       );
     } catch (e) {
-      print(e);
       throw ServerException(e, '', stackTrace: StackTrace.current);
     }
   }

@@ -1,0 +1,71 @@
+# Automatically generated on 2022-07-02 UTC from https://codemagic.io/app/62bf61db81f400384458551a/settings
+# Note that this configuration is not an exact match to UI settings. Review and adjust as necessary.
+
+workflows:
+  default-workflow:
+    name: Default Workflow
+    max_build_duration: 60
+    environment:
+      vars:
+        keys: Encrypted(Z0FBQUFBQml3Q1pucEt4UEdvTHRqQ1RSY2RhSV9xZ3dTZ2JmTmZvb2dhU2xvQWwtd0sxZnd0SG5Oc1owSFlyTGc0SkVvVGZEUy1sN0dWSHo1WlFTdm1tVlhlWEt5VVpiOU5IQWhLME5mQ0kzM01Fa1hzeE9IM2x5bGRrZkxMS0FYNHR6N3BoUlhpM3ZZZ3M4d0U3Nm12S2ZjUk5qZjhnclVZbWthMWpCWVdIWUhGREJTMmJaSE5LWkVrUUNqZHpGMGk2Y0UzNk44d2I2Mzc4el9IcHBpU05aZHVUTG84MkY5SjgxdzBoSDJ5eTl6ZFRXeWp5WGNtWXdfbE9KM3RXOU5USUFtUXBBdjVqSk5MUnR2ZTRDN04wbl94TklXVEpjZXBMNXYxdVlaeEZ1NjRqbkpCdjdNR2kxekVQT3pBdVdKYi1aeFB0T21HTl9PQnhPRnhQTENubjZvc01JZURlSFY5T00zSVJZUFNxRWpjbW0yZkNMRXQ4djM1TnVwZmZtZzcxQWw1Ml8zLXNKalZaUFlndHFMRy1mZ1hyYTdxZDhTRW84M0JLcS1PTk9rNS1fcEpLRTRjWT0=)
+      flutter: default
+      xcode: latest
+      cocoapods: default
+    triggering:
+      events:
+        - push
+        - pull_request
+      branch_patterns:
+        - pattern: '*'
+          include: true
+          source: true
+      tag_patterns:
+        - pattern: '*'
+          include: true
+    scripts:
+      - |
+        # set up debug keystore
+        rm -f ~/.android/debug.keystore
+        keytool -genkeypair \
+          -alias androiddebugkey \
+          -keypass android \
+          -keystore ~/.android/debug.keystore \
+          -storepass android \
+          -dname 'CN=Android Debug,O=Android,C=US' \
+          -keyalg 'RSA' \
+          -keysize 2048 \
+          -validity 10000
+      - |
+        # set up local properties
+        echo "flutter.sdk=$HOME/programs/flutter" > "$FCI_BUILD_DIR/android/local.properties"
+      - flutter packages pub get
+      - |
+        #!/bin/sh
+        mkdir -p $FCI_BUILD_DIR/lib/secrets
+        echo $keys | base64 --decode > $FCI_BUILD_DIR/lib/secrets/keys.dart
+      - flutter analyze
+      - flutter test
+      - flutter build appbundle --release
+      - |
+        # generate universal apk signed with debug key
+        android-app-bundle build-universal-apk \
+          --bundle build/**/outputs/**/*.aab \
+          --ks ~/.android/debug.keystore \
+          --ks-pass android \
+          --ks-key-alias androiddebugkey \
+          --key-pass android
+      - find . -name "Podfile" -execdir pod install \;
+      - flutter build ios --release --no-codesign
+    artifacts:
+      - build/**/outputs/apk/**/*.apk
+      - build/**/outputs/bundle/**/*.aab
+      - build/**/outputs/**/mapping.txt
+      - build/ios/ipa/*.ipa
+      - /tmp/xcodebuild_logs/*.log
+      - '*.snap'
+      - build/windows/**/*.msix
+      - flutter_drive.log
+    publishing:
+      email:
+        recipients:
+          - bk.koluch+codemagic@gmail.com
