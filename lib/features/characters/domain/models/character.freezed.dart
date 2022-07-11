@@ -14,6 +14,10 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+Character _$CharacterFromJson(Map<String, dynamic> json) {
+  return _Character.fromJson(json);
+}
+
 /// @nodoc
 mixin _$Character {
   int? get id => throw _privateConstructorUsedError;
@@ -28,6 +32,7 @@ mixin _$Character {
   GenericList<CommonSummary>? get events => throw _privateConstructorUsedError;
   GenericList<CommonSummary>? get series => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $CharacterCopyWith<Character> get copyWith =>
       throw _privateConstructorUsedError;
@@ -288,7 +293,7 @@ class __$$_CharacterCopyWithImpl<$Res> extends _$CharacterCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$_Character extends _Character {
   const _$_Character(
       {this.id,
@@ -304,6 +309,9 @@ class _$_Character extends _Character {
       this.series})
       : _urls = urls,
         super._();
+
+  factory _$_Character.fromJson(Map<String, dynamic> json) =>
+      _$$_CharacterFromJson(json);
 
   @override
   final int? id;
@@ -360,6 +368,7 @@ class _$_Character extends _Character {
             const DeepCollectionEquality().equals(other.series, series));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -379,6 +388,11 @@ class _$_Character extends _Character {
   @override
   _$$_CharacterCopyWith<_$_Character> get copyWith =>
       __$$_CharacterCopyWithImpl<_$_Character>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_CharacterToJson(this);
+  }
 }
 
 abstract class _Character extends Character {
@@ -395,6 +409,9 @@ abstract class _Character extends Character {
       final GenericList<CommonSummary>? events,
       final GenericList<CommonSummary>? series}) = _$_Character;
   const _Character._() : super._();
+
+  factory _Character.fromJson(Map<String, dynamic> json) =
+      _$_Character.fromJson;
 
   @override
   int? get id => throw _privateConstructorUsedError;

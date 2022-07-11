@@ -6,10 +6,21 @@ import 'package:marvel_knowledge_compendium/core/error/failures.dart';
 import 'package:marvel_knowledge_compendium/features/characters/data/dtos/character_data_container_dto.dart';
 import 'package:marvel_knowledge_compendium/features/characters/data/dtos/character_data_wrapper_dto.dart';
 import 'package:marvel_knowledge_compendium/features/characters/data/dtos/character_dto.dart';
+import 'package:marvel_knowledge_compendium/features/characters/domain/models/character_data_container.dart';
 import 'package:marvel_knowledge_compendium/features/characters/domain/models/character_data_wrapper.dart';
+
+import 'test_json_data.dart';
 
 // Characters
 const String tCharacterId = '1';
+const String tCharacterName = 'A-Bomb';
+const int tOffset = 100;
+
+final CharacterDataWrapperDto tCharacterDataWrapperDtoFromJSON =
+    CharacterDataWrapperDtoExtension.fullFromJson(tCharacterDataWrapperDtoJSON);
+
+final CharacterDataContainer tCharacterDataContainerFromJSON =
+    CharacterDataContainerExtension.fullFromJson(tCharacterDataContainerJSON);
 
 final CharacterDataWrapperDto tCharacterDataWrapperDto = CharacterDataWrapperDto(
   code: 200,
@@ -54,7 +65,8 @@ const ComicSummaryDto tComicSummaryDto = ComicSummaryDto(
 );
 
 final CharacterDataWrapper tCharacterDataWrapper = CharacterDataWrapperExtension.fromDto(tCharacterDataWrapperDto);
-
+final CharacterDataContainer tCharacterDataContainer =
+    CharacterDataContainerExtension.fromDto(tCharacterDataContainerDto);
 // Exceptions
 final ServerException tServerException = ServerException('', '', stackTrace: StackTrace.current);
 

@@ -8,5 +8,5 @@ import 'package:marvel_knowledge_compendium/features/characters/domain/use_cases
 class GetCharacterByIdUseCase extends UseCase<Future<Either<Failure, CharacterDataWrapper>>, String> {
   @override
   Future<Either<Failure, CharacterDataWrapper>> call(String characterId) async =>
-      await getIt<GetCharactersOrCharacterUseCase>()(characterId);
+      await getIt<GetCharactersOrCharacterUseCase>()(GetCharactersOrCharacterUseCaseParams(characterId: characterId));
 }

@@ -11,6 +11,7 @@ import 'package:marvel_knowledge_compendium/core/shared_entities/generic_list.da
 import 'package:marvel_knowledge_compendium/features/characters/data/dtos/character_dto.dart';
 
 part 'character.freezed.dart';
+part 'character.g.dart';
 
 @freezed
 class Character with _$Character {
@@ -29,6 +30,8 @@ class Character with _$Character {
     EventList? events,
     SeriesList? series,
   }) = _Character;
+
+  factory Character.fromJson(Map<String, dynamic> json) => _$CharacterFromJson(json);
 
   factory Character.fromDto(CharacterDto dto) => Character(
         id: dto.id,

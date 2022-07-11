@@ -14,13 +14,13 @@ void main() {
 
   group('getCharactersList', () {
     test(
-      'should properly propagate the call to repository and return CharacterDataWrapperDto correctly on successful call when characterId is not provided',
+      'should properly propagate the call to repository and return CharacterDataWrapperDto correctly on successful call when characterId and offset are not provided',
       () async {
         // Arrange
         when(() => charactersRepository.getCharactersList()).thenAnswer((_) async => Right(tCharacterDataWrapperDto));
 
         // Act
-        final result = await getCharactersOrCharacterUseCase.call();
+        final result = await getCharactersOrCharacterUseCase.call(GetCharactersOrCharacterUseCaseParams());
 
         // Assert
         verify(() => charactersRepository.getCharactersList()).called(1);
@@ -29,16 +29,50 @@ void main() {
     );
 
     test(
-      'should properly propagate the call to repository and return ServerFailure correctly when repository returns ServerFailure',
+      'should properly propagate the call to repository and return ServerFailure correctly when repository returns ServerFailure when characterId and offset are not provided',
       () async {
         // Arrange
         when(() => charactersRepository.getCharactersList()).thenAnswer((_) async => Left(tServerFailure));
 
         // Act
-        final result = await getCharactersOrCharacterUseCase.call();
+        final result = await getCharactersOrCharacterUseCase.call(GetCharactersOrCharacterUseCaseParams());
 
         // Assert
         verify(() => charactersRepository.getCharactersList()).called(1);
+        expect(result, Left(tServerFailure));
+      },
+    );
+
+    test(
+      'should properly propagate the call to repository and return CharacterDataWrapperDto correctly on successful call when characterId is not and offset is provided',
+      () async {
+        // Arrange
+        when(() => charactersRepository.getCharactersList(offset: any(named: 'offset')))
+            .thenAnswer((_) async => Right(tCharacterDataWrapperDto));
+
+        // Act
+        final result =
+            await getCharactersOrCharacterUseCase.call(GetCharactersOrCharacterUseCaseParams(offset: tOffset));
+
+        // Assert
+        verify(() => charactersRepository.getCharactersList(offset: tOffset)).called(1);
+        expect(result, Right(tCharacterDataWrapper));
+      },
+    );
+
+    test(
+      'should properly propagate the call to repository and return ServerFailure correctly when repository returns ServerFailure when characterId is not and offset is provided',
+      () async {
+        // Arrange
+        when(() => charactersRepository.getCharactersList(offset: any(named: 'offset')))
+            .thenAnswer((_) async => Left(tServerFailure));
+
+        // Act
+        final result =
+            await getCharactersOrCharacterUseCase.call(GetCharactersOrCharacterUseCaseParams(offset: tOffset));
+
+        // Assert
+        verify(() => charactersRepository.getCharactersList(offset: tOffset)).called(1);
         expect(result, Left(tServerFailure));
       },
     );
@@ -53,7 +87,8 @@ void main() {
             .thenAnswer((_) async => Right(tCharacterDataWrapperDto));
 
         // Act
-        final result = await getCharactersOrCharacterUseCase.call(tCharacterId);
+        final result = await getCharactersOrCharacterUseCase
+            .call(GetCharactersOrCharacterUseCaseParams(characterId: tCharacterId));
 
         // Assert
         verify(() => charactersRepository.getCharacterById(tCharacterId)).called(1);
@@ -62,13 +97,14 @@ void main() {
     );
 
     test(
-      'should properly propagate the call to repository and return ServerFailure correctly when repository returns ServerFailure',
+      'should properly propagate the call to repository and return ServerFailure correctly when repository returns ServerFailure when characterId is provided',
       () async {
         // Arrange
         when(() => charactersRepository.getCharacterById(captureAny())).thenAnswer((_) async => Left(tServerFailure));
 
         // Act
-        final result = await getCharactersOrCharacterUseCase.call(tCharacterId);
+        final result = await getCharactersOrCharacterUseCase
+            .call(GetCharactersOrCharacterUseCaseParams(characterId: tCharacterId));
 
         // Assert
         verify(() => charactersRepository.getCharacterById(tCharacterId)).called(1);
