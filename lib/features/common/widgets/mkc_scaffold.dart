@@ -4,14 +4,17 @@ import 'package:marvel_knowledge_compendium/core/style/scroll_behaviour.dart';
 import 'package:marvel_knowledge_compendium/features/common/widgets/mkc_text.dart';
 
 class MKCScaffold extends StatelessWidget {
-  final String title;
   final Widget body;
+  final String? title;
+  final Widget? titleWidget;
 
   const MKCScaffold({
-    required this.title,
     required this.body,
+    this.title,
+    this.titleWidget,
     Key? key,
-  }) : super(key: key);
+  })  : assert(titleWidget != null || title != null),
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +24,7 @@ class MKCScaffold extends StatelessWidget {
         backgroundColor: ColorTokens.brandSecondaryColorDarker,
         appBar: AppBar(
           centerTitle: true,
-          title: MKCText.titleMd(title, maxLines: 1),
+          title: titleWidget ?? MKCText.titleMd(title!, maxLines: 1),
         ),
         body: body,
       ),

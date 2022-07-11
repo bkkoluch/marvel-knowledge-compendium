@@ -6,21 +6,21 @@ class MKCNetworkImage extends StatelessWidget {
   const MKCNetworkImage({required this.imageUrl, Key? key}) : super(key: key);
 
   @override
-  Widget build(_) => Image.network(
-        imageUrl,
-        gaplessPlayback: true,
-        loadingBuilder: (_, Widget child, ImageChunkEvent? loadingProgress) {
-          if (loadingProgress != null) {
-            return Center(
-              child: CircularProgressIndicator(
+  Widget build(_) => Center(
+        child: Image.network(
+          imageUrl,
+          gaplessPlayback: true,
+          loadingBuilder: (_, Widget child, ImageChunkEvent? loadingProgress) {
+            if (loadingProgress != null) {
+              return CircularProgressIndicator(
                 color: ColorTokens.brandPrimaryColor,
                 value: loadingProgress.expectedTotalBytes != null
                     ? loadingProgress.cumulativeBytesLoaded / loadingProgress.expectedTotalBytes!
                     : null,
-              ),
-            );
-          }
-          return child;
-        },
+              );
+            }
+            return child;
+          },
+        ),
       );
 }
