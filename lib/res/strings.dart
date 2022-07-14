@@ -19,3 +19,4 @@ const characterDetailsPageStoriesAppearancesText = 'Stories appearances';
 const characterDetailsPageNoComicsAppearancesText = 'This character didn\'t have any comics appearances.';
 const characterDetailsPageNoSeriesAppearancesText = 'This character didn\'t have any series appearances.';
 const characterDetailsPageNoStoriesAppearancesText = 'This character didn\'t have any stories appearances.';
+const characterDetailsPageNoDescriptionText = 'This character does not have description in Marvel books yet.';

@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:marvel_knowledge_compendium/core/domain/models/comics/comic_summary.dart';
 import 'package:marvel_knowledge_compendium/core/domain/models/series/series_summary.dart';
 import 'package:marvel_knowledge_compendium/core/domain/models/stories/story_summary.dart';
+import 'package:marvel_knowledge_compendium/core/extensions/context_extensions.dart';
 import 'package:marvel_knowledge_compendium/core/style/color_tokens.dart';
 import 'package:marvel_knowledge_compendium/core/style/core_dimensions.dart';
 import 'package:marvel_knowledge_compendium/features/characters/domain/models/character.dart';
 import 'package:marvel_knowledge_compendium/features/common/widgets/mkc_network_image.dart';
 import 'package:marvel_knowledge_compendium/features/common/widgets/mkc_scaffold.dart';
 import 'package:marvel_knowledge_compendium/features/common/widgets/mkc_text.dart';
+import 'package:marvel_knowledge_compendium/features/utils/mode_utils.dart' as mode_utils;
 import 'package:marvel_knowledge_compendium/res/strings.dart' as strings;
 
 const List<String> _wronglyFormattedStringsToReplace = ['</p>', '<p class="Body">'];
@@ -25,15 +27,23 @@ class CharacterDetailsPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Hero(tag: _imageHeroTag, child: MKCNetworkImage(imageUrl: _imageUrl)),
-            const SizedBox(height: CoreDimensions.paddingL),
             Hero(
-              tag: character.name!,
-              child: Center(
-                child: MKCText.titleLg(
-                  character.name!,
-                  color: ColorTokens.white,
-                  textAlign: TextAlign.center,
+              tag: _imageHeroTag,
+              child: MKCNetworkImage(
+                imageUrl: _imageUrl,
+                width: context.screenWidth,
+              ),
+            ),
+            const SizedBox(height: CoreDimensions.paddingL),
+            _padding(
+              child: Hero(
+                tag: character.name!,
+                child: Center(
+                  child: MKCText.titleLg(
+                    character.name!,
+                    color: ColorTokens.white,
+                    textAlign: TextAlign.center,
+                  ),
                 ),
               ),
             ),
@@ -86,7 +96,7 @@ class CharacterDetailsPage extends StatelessWidget {
     List<SeriesSummary>? series,
     List<StorySummary>? stories,
   }) {
-    assert(comics != null || series != null || stories != null);
+    assert(comics != null || series != null || stories != null || mode_utils.isTestMode);
     List items = [];
     if (comics != null) {
       items = comics;
@@ -125,7 +135,7 @@ class CharacterDetailsPage extends StatelessWidget {
       }
       return description!;
     } else {
-      return 'This character does not have description in Marvel books yet.';
+      return strings.characterDetailsPageNoDescriptionText;
     }
   }
 
