@@ -4,6 +4,9 @@ A Flutter app letting you find information related to Marvel universe and it's h
 
 Project was created with Clean Architecture in mind.
 
+## CI/CD
+#### CI/CD solution used for the project is Codemagic, refer to `codemagic.yaml` file and https://codemagic.io/builds
+
 | Type  | Used dependency |
 |---|---|
 | Navigation | [auto_route](https://pub.dev/packages/auto_route) |

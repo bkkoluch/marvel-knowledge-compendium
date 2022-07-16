@@ -81,20 +81,23 @@ class MKCText extends StatelessWidget {
         );
 
   @override
-  Widget build(BuildContext context) => maxLines == 1
-      ? AutoSizeText(
-          text,
-          minFontSize: 8,
-          maxLines: 1,
-          style: style.copyWith(fontFeatures: fontFeatures),
-          textAlign: textAlign ?? TextAlign.start,
-          overflow: TextOverflow.ellipsis,
-        )
-      : Text(
-          text,
-          maxLines: maxLines,
-          textAlign: textAlign,
-          style: style.copyWith(fontFeatures: fontFeatures),
-          overflow: maxLines == null ? null : TextOverflow.ellipsis,
-        );
+  Widget build(BuildContext context) => Material(
+        type: MaterialType.transparency,
+        child: maxLines == 1
+            ? AutoSizeText(
+                text,
+                minFontSize: 8,
+                maxLines: 1,
+                style: style.copyWith(fontFeatures: fontFeatures),
+                textAlign: textAlign ?? TextAlign.start,
+                overflow: TextOverflow.ellipsis,
+              )
+            : Text(
+                text,
+                maxLines: maxLines,
+                textAlign: textAlign,
+                style: style.copyWith(fontFeatures: fontFeatures),
+                overflow: maxLines == null ? null : TextOverflow.ellipsis,
+              ),
+      );
 }

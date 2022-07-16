@@ -16,20 +16,20 @@ void main() {
   setUpAll(() {
     baseSetup();
 
-    getIt.registerFactory<GetCharactersOrCharacterUseCase>(() => getCharactersOrCharacterUseCase);
+    getIt.registerFactoryAsync<GetCharactersOrCharacterUseCase>(() async => getCharactersOrCharacterUseCase);
   });
 
   test(
     'should properly propagate the call to repository and return CharacterDataWrapper correctly on successful call',
     () async {
       // Arrange
-      when(() => getCharactersOrCharacterUseCase()).thenAnswer((_) async => Right(tCharacterDataWrapper));
+      when(() => getCharactersOrCharacterUseCase(captureAny())).thenAnswer((_) async => Right(tCharacterDataWrapper));
 
       // Act
       final result = await getAllCharactersUseCase.call();
 
       // Assert
-      verify(() => getCharactersOrCharacterUseCase()).called(1);
+      verify(() => getCharactersOrCharacterUseCase(captureAny())).called(1);
       expect(result, Right(tCharacterDataWrapper));
     },
   );
@@ -38,13 +38,13 @@ void main() {
     'should properly propagate the call to repository and return ServerFailure correctly when repository returns ServerFailure',
     () async {
       // Arrange
-      when(() => getCharactersOrCharacterUseCase()).thenAnswer((_) async => Left(tServerFailure));
+      when(() => getCharactersOrCharacterUseCase(captureAny())).thenAnswer((_) async => Left(tServerFailure));
 
       // Act
       final result = await getAllCharactersUseCase.call();
 
       // Assert
-      verify(() => getCharactersOrCharacterUseCase()).called(1);
+      verify(() => getCharactersOrCharacterUseCase(captureAny())).called(1);
       expect(result, Left(tServerFailure));
     },
   );

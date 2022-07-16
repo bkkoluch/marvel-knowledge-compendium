@@ -12,7 +12,10 @@ class ThemedData {
     ),
     backgroundColor: ColorTokens.white,
     primaryColor: ColorTokens.brandPrimaryColor,
-    appBarTheme: const AppBarTheme(backgroundColor: ColorTokens.brandPrimaryColor),
+    appBarTheme: const AppBarTheme(
+      backgroundColor: ColorTokens.brandPrimaryColor,
+      iconTheme: IconThemeData(color: ColorTokens.brandPrimaryColorDarker),
+    ),
     fontFamily: GoogleFonts.montserrat().fontFamily,
   );
 }

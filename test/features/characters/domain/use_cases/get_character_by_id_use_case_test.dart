@@ -29,7 +29,7 @@ void main() {
       final result = await getCharacterByIdUseCase.call(tCharacterId);
 
       // Assert
-      verify(() => getCharactersOrCharacterUseCase(tCharacterId)).called(1);
+      verify(() => getCharactersOrCharacterUseCase(captureAny())).called(1);
       expect(result, Right(tCharacterDataWrapper));
     },
   );
@@ -44,7 +44,7 @@ void main() {
       final result = await getCharacterByIdUseCase.call(tCharacterId);
 
       // Assert
-      verify(() => getCharactersOrCharacterUseCase(tCharacterId)).called(1);
+      verify(() => getCharactersOrCharacterUseCase(captureAny())).called(1);
       expect(result, Left(tServerFailure));
     },
   );
