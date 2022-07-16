@@ -81,7 +81,7 @@ class _HomePageState extends State<HomePage> {
         break;
 
       default:
-        print(category);
+        () {};
     }
   }
 }
