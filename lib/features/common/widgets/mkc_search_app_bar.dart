@@ -1,6 +1,5 @@
 import 'dart:math';
 
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
@@ -13,8 +12,9 @@ import 'package:marvel_knowledge_compendium/res/strings.dart' as strings;
 
 class MKCSearchAppBar extends SliverPersistentHeaderDelegate {
   final ValueChanged<String>? onChanged;
+  final VoidCallback onBackArrowTapped;
 
-  const MKCSearchAppBar({this.onChanged});
+  const MKCSearchAppBar({required this.onBackArrowTapped, this.onChanged});
 
   @override
   Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
@@ -49,7 +49,7 @@ class MKCSearchAppBar extends SliverPersistentHeaderDelegate {
               shrinkOffset: shrinkOffset,
               child: GestureDetector(
                 child: const Icon(Icons.arrow_back),
-                onTap: context.router.pop,
+                onTap: onBackArrowTapped,
               ),
             ),
           ),

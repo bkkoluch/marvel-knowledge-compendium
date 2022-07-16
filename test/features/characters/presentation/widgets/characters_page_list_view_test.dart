@@ -11,16 +11,18 @@ void main() {
     'should display CharactersPageListView correctly when characters are not empty',
     (WidgetTester tester) async {
       final Widget widget = prepareWidgetToTest(
-        CustomScrollView(
-          slivers: [
-            CharactersPageListView(
-              isLoadingNewCharacters: false,
-              areMoreCharactersAvailable: false,
-              wereCharactersSearched: false,
-              characterDataContainer: tCharacterDataContainer,
-              onNotification: (_) => true,
-            ),
-          ],
+        Material(
+          child: CustomScrollView(
+            slivers: [
+              CharactersPageListView(
+                isLoadingNewCharacters: false,
+                areMoreCharactersAvailable: false,
+                wereCharactersSearched: false,
+                characterDataContainer: tCharacterDataContainer,
+                onNotification: (_) => true,
+              ),
+            ],
+          ),
         ),
       );
 

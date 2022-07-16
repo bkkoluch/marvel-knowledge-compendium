@@ -66,7 +66,10 @@ class _CharactersPageState extends State<CharactersPage> {
                   controller: _controller,
                   slivers: [
                     SliverPersistentHeader(
-                      delegate: MKCSearchAppBar(onChanged: _onSearchAppBarFieldChanged),
+                      delegate: MKCSearchAppBar(
+                        onBackArrowTapped: Navigator.of(context).pop,
+                        onChanged: _onSearchAppBarFieldChanged,
+                      ),
                       pinned: true,
                     ),
                     CharactersPageListView(
