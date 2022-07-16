@@ -126,7 +126,6 @@ class SearchBar extends StatelessWidget {
           contentPadding: const EdgeInsets.symmetric(vertical: 20),
           prefixIcon: const Icon(Icons.search, color: ColorTokens.grey),
         ),
-        // onFieldSubmitted: onFieldSubmitted,
         onChanged: onChanged,
       ),
     );
