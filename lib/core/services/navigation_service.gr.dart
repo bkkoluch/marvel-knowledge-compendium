@@ -40,7 +40,6 @@ class AppRouter extends _i4.RootStackRouter {
           child: _i2.CharactersPage(
               unfilteredCharacterDataWrapper:
                   args.unfilteredCharacterDataWrapper,
-              limit: args.limit,
               key: args.key),
           customRouteBuilder: _i6.fadeInRouteBuilder,
           opaque: true,
@@ -81,13 +80,11 @@ class CharactersRoute extends _i4.PageRouteInfo<CharactersRouteArgs> {
   CharactersRoute(
       {required _i7.DataWrapper<_i8.DataContainer<_i9.Character>>
           unfilteredCharacterDataWrapper,
-      required int limit,
       _i5.Key? key})
       : super(CharactersRoute.name,
             path: '/characters-page',
             args: CharactersRouteArgs(
                 unfilteredCharacterDataWrapper: unfilteredCharacterDataWrapper,
-                limit: limit,
                 key: key));
 
   static const String name = 'CharactersRoute';
@@ -95,20 +92,16 @@ class CharactersRoute extends _i4.PageRouteInfo<CharactersRouteArgs> {
 
 class CharactersRouteArgs {
   const CharactersRouteArgs(
-      {required this.unfilteredCharacterDataWrapper,
-      required this.limit,
-      this.key});
+      {required this.unfilteredCharacterDataWrapper, this.key});
 
   final _i7.DataWrapper<_i8.DataContainer<_i9.Character>>
       unfilteredCharacterDataWrapper;
-
-  final int limit;
 
   final _i5.Key? key;
 
   @override
   String toString() {
-    return 'CharactersRouteArgs{unfilteredCharacterDataWrapper: $unfilteredCharacterDataWrapper, limit: $limit, key: $key}';
+    return 'CharactersRouteArgs{unfilteredCharacterDataWrapper: $unfilteredCharacterDataWrapper, key: $key}';
   }
 }
 

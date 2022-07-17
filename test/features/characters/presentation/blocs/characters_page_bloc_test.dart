@@ -104,7 +104,7 @@ void main() {
             results: [
               ...?tCharacterDataContainer.results,
               ...?tCharacterDataContainer.results,
-            ],
+            ].toSet().toList(),
           ),
           status: CharactersPageStateStatus.charactersWrapperLoaded,
         ),
@@ -112,7 +112,7 @@ void main() {
       verify: (bloc) {
         () => bloc.state.characterDataContainer?.results?.length == 2;
         verify(() => getSavedCharactersUseCase()).called(1);
-        verify(() => saveCharactersUseCase(tCharacterDataWrapper.data!)).called(1);
+        verify(() => saveCharactersUseCase(tCharacterDataWrapper.data!)).called(2);
         verify(() => getAllCharactersUseCase(tOffset)).called(1);
       },
     );

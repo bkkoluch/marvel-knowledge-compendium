@@ -73,10 +73,7 @@ class _HomePageState extends State<HomePage> {
     switch (category) {
       case strings.homePageCharactersTileText:
         context.router.push(
-          CharactersRoute(
-            unfilteredCharacterDataWrapper: cubit.state.unfilteredCharacterDataWrapper!,
-            limit: cubit.state.unfilteredCharacterDataWrapper!.data!.limit!,
-          ),
+          CharactersRoute(unfilteredCharacterDataWrapper: cubit.state.unfilteredCharacterDataWrapper!),
         );
         break;
 

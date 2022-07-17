@@ -2,7 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:marvel_knowledge_compendium/core/extensions/string_extensions.dart';
 
-class SafeImage extends StatelessWidget {
+class MKCSafeImage extends StatelessWidget {
   final String? imageUrl;
   final double? width;
   final double? height;
@@ -13,7 +13,7 @@ class SafeImage extends StatelessWidget {
   final Duration fadeInDuration;
   final Duration fadeOutDuration;
 
-  const SafeImage({
+  const MKCSafeImage({
     required this.imageUrl,
     this.width,
     this.height,
@@ -28,6 +28,7 @@ class SafeImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('URL: $imageUrl');
     return imageUrl.isBlank() || !_isValidImageUri
         ? placeholder
         : CachedNetworkImage(
