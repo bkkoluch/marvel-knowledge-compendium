@@ -20,6 +20,8 @@ mixin _$HomePageState {
   List<String> get homePageImages => throw _privateConstructorUsedError;
   DataWrapper<DataContainer<Character>>? get unfilteredCharacterDataWrapper =>
       throw _privateConstructorUsedError;
+  DataWrapper<DataContainer<Comic>>? get unfilteredComicDataWrapper =>
+      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $HomePageStateCopyWith<HomePageState> get copyWith =>
@@ -34,10 +36,13 @@ abstract class $HomePageStateCopyWith<$Res> {
   $Res call(
       {HomePageStateStatus status,
       List<String> homePageImages,
-      DataWrapper<DataContainer<Character>>? unfilteredCharacterDataWrapper});
+      DataWrapper<DataContainer<Character>>? unfilteredCharacterDataWrapper,
+      DataWrapper<DataContainer<Comic>>? unfilteredComicDataWrapper});
 
   $DataWrapperCopyWith<DataContainer<Character>, $Res>?
       get unfilteredCharacterDataWrapper;
+  $DataWrapperCopyWith<DataContainer<Comic>, $Res>?
+      get unfilteredComicDataWrapper;
 }
 
 /// @nodoc
@@ -54,6 +59,7 @@ class _$HomePageStateCopyWithImpl<$Res>
     Object? status = freezed,
     Object? homePageImages = freezed,
     Object? unfilteredCharacterDataWrapper = freezed,
+    Object? unfilteredComicDataWrapper = freezed,
   }) {
     return _then(_value.copyWith(
       status: status == freezed
@@ -68,6 +74,10 @@ class _$HomePageStateCopyWithImpl<$Res>
           ? _value.unfilteredCharacterDataWrapper
           : unfilteredCharacterDataWrapper // ignore: cast_nullable_to_non_nullable
               as DataWrapper<DataContainer<Character>>?,
+      unfilteredComicDataWrapper: unfilteredComicDataWrapper == freezed
+          ? _value.unfilteredComicDataWrapper
+          : unfilteredComicDataWrapper // ignore: cast_nullable_to_non_nullable
+              as DataWrapper<DataContainer<Comic>>?,
     ));
   }
 
@@ -83,6 +93,19 @@ class _$HomePageStateCopyWithImpl<$Res>
       return _then(_value.copyWith(unfilteredCharacterDataWrapper: value));
     });
   }
+
+  @override
+  $DataWrapperCopyWith<DataContainer<Comic>, $Res>?
+      get unfilteredComicDataWrapper {
+    if (_value.unfilteredComicDataWrapper == null) {
+      return null;
+    }
+
+    return $DataWrapperCopyWith<DataContainer<Comic>, $Res>(
+        _value.unfilteredComicDataWrapper!, (value) {
+      return _then(_value.copyWith(unfilteredComicDataWrapper: value));
+    });
+  }
 }
 
 /// @nodoc
@@ -95,11 +118,15 @@ abstract class _$$_HomePageStateCopyWith<$Res>
   $Res call(
       {HomePageStateStatus status,
       List<String> homePageImages,
-      DataWrapper<DataContainer<Character>>? unfilteredCharacterDataWrapper});
+      DataWrapper<DataContainer<Character>>? unfilteredCharacterDataWrapper,
+      DataWrapper<DataContainer<Comic>>? unfilteredComicDataWrapper});
 
   @override
   $DataWrapperCopyWith<DataContainer<Character>, $Res>?
       get unfilteredCharacterDataWrapper;
+  @override
+  $DataWrapperCopyWith<DataContainer<Comic>, $Res>?
+      get unfilteredComicDataWrapper;
 }
 
 /// @nodoc
@@ -118,6 +145,7 @@ class __$$_HomePageStateCopyWithImpl<$Res>
     Object? status = freezed,
     Object? homePageImages = freezed,
     Object? unfilteredCharacterDataWrapper = freezed,
+    Object? unfilteredComicDataWrapper = freezed,
   }) {
     return _then(_$_HomePageState(
       status: status == freezed
@@ -132,6 +160,10 @@ class __$$_HomePageStateCopyWithImpl<$Res>
           ? _value.unfilteredCharacterDataWrapper
           : unfilteredCharacterDataWrapper // ignore: cast_nullable_to_non_nullable
               as DataWrapper<DataContainer<Character>>?,
+      unfilteredComicDataWrapper: unfilteredComicDataWrapper == freezed
+          ? _value.unfilteredComicDataWrapper
+          : unfilteredComicDataWrapper // ignore: cast_nullable_to_non_nullable
+              as DataWrapper<DataContainer<Comic>>?,
     ));
   }
 }
@@ -142,7 +174,8 @@ class _$_HomePageState extends _HomePageState {
   const _$_HomePageState(
       {required this.status,
       required final List<String> homePageImages,
-      this.unfilteredCharacterDataWrapper})
+      this.unfilteredCharacterDataWrapper,
+      this.unfilteredComicDataWrapper})
       : _homePageImages = homePageImages,
         super._();
 
@@ -157,10 +190,12 @@ class _$_HomePageState extends _HomePageState {
 
   @override
   final DataWrapper<DataContainer<Character>>? unfilteredCharacterDataWrapper;
+  @override
+  final DataWrapper<DataContainer<Comic>>? unfilteredComicDataWrapper;
 
   @override
   String toString() {
-    return 'HomePageState(status: $status, homePageImages: $homePageImages, unfilteredCharacterDataWrapper: $unfilteredCharacterDataWrapper)';
+    return 'HomePageState(status: $status, homePageImages: $homePageImages, unfilteredCharacterDataWrapper: $unfilteredCharacterDataWrapper, unfilteredComicDataWrapper: $unfilteredComicDataWrapper)';
   }
 
   @override
@@ -173,7 +208,9 @@ class _$_HomePageState extends _HomePageState {
                 .equals(other._homePageImages, _homePageImages) &&
             const DeepCollectionEquality().equals(
                 other.unfilteredCharacterDataWrapper,
-                unfilteredCharacterDataWrapper));
+                unfilteredCharacterDataWrapper) &&
+            const DeepCollectionEquality().equals(
+                other.unfilteredComicDataWrapper, unfilteredComicDataWrapper));
   }
 
   @override
@@ -181,7 +218,8 @@ class _$_HomePageState extends _HomePageState {
       runtimeType,
       const DeepCollectionEquality().hash(status),
       const DeepCollectionEquality().hash(_homePageImages),
-      const DeepCollectionEquality().hash(unfilteredCharacterDataWrapper));
+      const DeepCollectionEquality().hash(unfilteredCharacterDataWrapper),
+      const DeepCollectionEquality().hash(unfilteredComicDataWrapper));
 
   @JsonKey(ignore: true)
   @override
@@ -194,7 +232,9 @@ abstract class _HomePageState extends HomePageState {
       {required final HomePageStateStatus status,
       required final List<String> homePageImages,
       final DataWrapper<DataContainer<Character>>?
-          unfilteredCharacterDataWrapper}) = _$_HomePageState;
+          unfilteredCharacterDataWrapper,
+      final DataWrapper<DataContainer<Comic>>?
+          unfilteredComicDataWrapper}) = _$_HomePageState;
   const _HomePageState._() : super._();
 
   @override
@@ -203,6 +243,9 @@ abstract class _HomePageState extends HomePageState {
   List<String> get homePageImages => throw _privateConstructorUsedError;
   @override
   DataWrapper<DataContainer<Character>>? get unfilteredCharacterDataWrapper =>
+      throw _privateConstructorUsedError;
+  @override
+  DataWrapper<DataContainer<Comic>>? get unfilteredComicDataWrapper =>
       throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)

@@ -2,12 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:marvel_knowledge_compendium/core/domain/models/comics/comic_summary.dart';
 import 'package:marvel_knowledge_compendium/core/domain/models/series/series_summary.dart';
 import 'package:marvel_knowledge_compendium/core/domain/models/stories/story_summary.dart';
-import 'package:marvel_knowledge_compendium/core/extensions/context_extensions.dart';
 import 'package:marvel_knowledge_compendium/core/style/color_tokens.dart';
 import 'package:marvel_knowledge_compendium/core/style/core_dimensions.dart';
 import 'package:marvel_knowledge_compendium/features/characters/domain/models/character.dart';
-import 'package:marvel_knowledge_compendium/features/common/widgets/mkc_network_image.dart';
-import 'package:marvel_knowledge_compendium/features/common/widgets/mkc_scaffold.dart';
+import 'package:marvel_knowledge_compendium/features/common/widgets/mkc_details_scaffold.dart';
 import 'package:marvel_knowledge_compendium/features/common/widgets/mkc_text.dart';
 import 'package:marvel_knowledge_compendium/features/utils/mode_utils.dart' as mode_utils;
 import 'package:marvel_knowledge_compendium/res/strings.dart' as strings;
@@ -21,55 +19,20 @@ class CharacterDetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MKCScaffold(
-      title: character.name!,
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Hero(
-              tag: _imageHeroTag,
-              child: MKCNetworkImage(
-                imageUrl: _imageUrl,
-                width: context.screenWidth,
-              ),
-            ),
-            const SizedBox(height: CoreDimensions.paddingL),
-            _padding(
-              child: Hero(
-                tag: character.name!,
-                child: Center(
-                  child: MKCText.titleLg(
-                    character.name!,
-                    color: ColorTokens.white,
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-              ),
-            ),
-            const SizedBox(height: CoreDimensions.paddingL),
-            _padding(child: MKCText.body(_characterDescription, color: ColorTokens.white)),
-            const SizedBox(height: CoreDimensions.paddingL),
-            _padding(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  _comicsAppearances(),
-                  _seriesAppearances(),
-                  _storiesAppearances(),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
+    return MKCDetailsScaffold(
+      name: character.name!,
+      description: character.description!,
+      children: [
+        _comicsAppearances(),
+        _seriesAppearances(),
+        _storiesAppearances(),
+      ],
+      thumbnail: character.thumbnail!,
+      id: character.id!,
+      noDescriptionFallbackText: strings.characterDetailsPageNoDescriptionText,
+      stringsToReplace: _wronglyFormattedStringsToReplace,
     );
   }
-
-  Widget _padding({required Widget child}) => Padding(
-        padding: const EdgeInsets.symmetric(horizontal: CoreDimensions.paddingL),
-        child: child,
-      );
 
   Widget _comicsAppearances() => _appearancesSection(
         titleText: strings.characterDetailsPageComicsAppearancesText,
@@ -123,23 +86,4 @@ class CharacterDetailsPage extends StatelessWidget {
   Widget _appearanceText(String text) => _detailsText('- $text');
 
   Widget _detailsText(String text) => MKCText.body(text, color: ColorTokens.white);
-
-  String get _characterDescription {
-    String? description = character.description;
-    if (description != null && description != '') {
-      // Sometimes MarvelAPI returns wrongly formatted descriptions, for example randomly containing HTML tags
-      for (final String invalidString in _wronglyFormattedStringsToReplace) {
-        if (description!.contains(invalidString)) {
-          description = description.replaceAll(invalidString, '');
-        }
-      }
-      return description!;
-    } else {
-      return strings.characterDetailsPageNoDescriptionText;
-    }
-  }
-
-  String get _imageUrl => character.thumbnail?.properImagePath ?? '';
-
-  String get _imageHeroTag => _imageUrl + character.id.toString();
 }

@@ -13,6 +13,12 @@ import 'package:marvel_knowledge_compendium/features/characters/data/dtos/charac
 import 'package:marvel_knowledge_compendium/features/characters/domain/models/character.dart';
 import 'package:marvel_knowledge_compendium/features/characters/domain/models/character_data_container.dart';
 import 'package:marvel_knowledge_compendium/features/characters/domain/models/character_data_wrapper.dart';
+import 'package:marvel_knowledge_compendium/features/comics/data/dtos/comic_data_container_dto.dart';
+import 'package:marvel_knowledge_compendium/features/comics/data/dtos/comic_data_wrapper_dto.dart';
+import 'package:marvel_knowledge_compendium/features/comics/data/dtos/comic_dto.dart';
+import 'package:marvel_knowledge_compendium/features/comics/domain/models/comic.dart';
+import 'package:marvel_knowledge_compendium/features/comics/domain/models/comic_data_container.dart';
+import 'package:marvel_knowledge_compendium/features/comics/domain/models/comic_data_wrapper.dart';
 
 import 'test_json_data.dart';
 
@@ -100,6 +106,56 @@ final CharacterDataContainer tCharacterDataContainer =
     CharacterDataContainerExtension.fromDto(tCharacterDataContainerDto);
 
 final Character tCharacter = Character.fromDto(tCharacterDtoList.first);
+
+// Comics
+
+final ComicDataWrapperDto tComicDataWrapperDtoFromJSON =
+    ComicDataWrapperDtoExtension.fullFromJson(tComicDataWrapperDtoJSON);
+
+final ComicDataContainer tComicDataContainerFromJSON =
+    ComicDataContainerExtension.fullFromJson(tComicDataContainerDtoJSON);
+
+final ComicDataWrapperDto tComicDataWrapperDto = ComicDataWrapperDto(
+  code: 200,
+  status: "Ok",
+  copyright: "© 2022 MARVEL",
+  attributionText: "Data provided by Marvel. © 2022 MARVEL",
+  attributionHTML: "<a href=\"http://marvel.com\">Data provided by Marvel. © 2022 MARVEL</a>",
+  etag: "6b3a1ed580583f03eacae1f6824771aace3b7cde",
+  data: tComicDataContainerDto,
+);
+
+final ComicDataContainerDto tComicDataContainerDto = ComicDataContainerDto(
+  offset: 0,
+  limit: 2,
+  total: 1562,
+  count: 2,
+  results: tComicsDtoList,
+);
+
+final List<ComicDto> tComicsDtoList = [tComicDto, tComicDto];
+
+final ComicDto tComicDto = ComicDto(
+  id: 1011334,
+  description: "",
+  modified: DateTime.tryParse("2014-04-29T14:18:17-0400"),
+  thumbnail: const ImageDto(path: "http://i.annihil.us/u/prod/marvel/i/mg/c/e0/535fecbbb9784", extension: "jpg"),
+  resourceURI: "http://gateway.marvel.com/v1/public/characters/1011334",
+  series: tSeriesSummaryDto,
+  stories: tStoryListDto,
+  collections: [tComicSummaryDto],
+);
+
+final ComicDto tComicDifferentDto = tComicDto.copyWith(id: 1011331);
+
+final ComicDataWrapper tComicDataWrapper = ComicDataWrapperExtension.fromDto(tComicDataWrapperDto);
+
+final ComicDataWrapper tComicDataDifferentWrapper = tComicDataWrapper
+  ..data?.copyWith(
+    results: [Comic.fromDto(tComicDto), Comic.fromDto(tComicDifferentDto)],
+  );
+
+final ComicDataContainer tComicDataContainer = ComicDataContainerExtension.fromDto(tComicDataContainerDto);
 
 // Exceptions
 final ServerException tServerException = ServerException('', '', stackTrace: StackTrace.current);

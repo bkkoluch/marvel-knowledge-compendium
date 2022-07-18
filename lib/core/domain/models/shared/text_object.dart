@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:marvel_knowledge_compendium/core/data/dtos/shared/text_object_dto.dart';
 
 part 'text_object.freezed.dart';
 part 'text_object.g.dart';
@@ -14,4 +15,6 @@ class TextObject with _$TextObject {
   }) = _TextObject;
 
   factory TextObject.fromJson(Map<String, dynamic> json) => _$TextObjectFromJson(json);
+
+  factory TextObject.fromDto(TextObjectDto dto) => TextObject(type: dto.type, language: dto.language, text: dto.text);
 }

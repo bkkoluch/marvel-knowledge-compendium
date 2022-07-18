@@ -8,13 +8,17 @@ import 'package:marvel_knowledge_compendium/core/style/color_tokens.dart';
 import 'package:marvel_knowledge_compendium/core/style/core_dimensions.dart';
 import 'package:marvel_knowledge_compendium/res/clippers/wave_clipper.dart';
 import 'package:marvel_knowledge_compendium/res/illustrations.dart';
-import 'package:marvel_knowledge_compendium/res/strings.dart' as strings;
 
 class MKCSearchAppBar extends SliverPersistentHeaderDelegate {
   final ValueChanged<String>? onChanged;
   final VoidCallback onBackArrowTapped;
+  final String searchAppBarText;
 
-  const MKCSearchAppBar({required this.onBackArrowTapped, this.onChanged});
+  const MKCSearchAppBar({
+    required this.onBackArrowTapped,
+    required this.searchAppBarText,
+    this.onChanged,
+  });
 
   @override
   Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
@@ -58,7 +62,7 @@ class MKCSearchAppBar extends SliverPersistentHeaderDelegate {
         ),
         Positioned(
           top: topPadding + offset,
-          child: SearchBar(onChanged: onChanged),
+          child: SearchBar(searchAppBarText: searchAppBarText, onChanged: onChanged),
           left: 16,
           right: 16,
         ),
@@ -107,9 +111,10 @@ class BackgroundWave extends StatelessWidget {
 }
 
 class SearchBar extends StatelessWidget {
+  final String searchAppBarText;
   final ValueChanged<String>? onChanged;
 
-  const SearchBar({this.onChanged, super.key});
+  const SearchBar({required this.searchAppBarText, this.onChanged, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -122,7 +127,7 @@ class SearchBar extends StatelessWidget {
           fillColor: ColorTokens.white,
           focusedBorder: _border(ColorTokens.black),
           enabledBorder: _border(ColorTokens.black),
-          hintText: strings.charactersPageSearchAppBarText,
+          hintText: searchAppBarText,
           contentPadding: const EdgeInsets.symmetric(vertical: 20),
           prefixIcon: const Icon(Icons.search, color: ColorTokens.grey),
         ),

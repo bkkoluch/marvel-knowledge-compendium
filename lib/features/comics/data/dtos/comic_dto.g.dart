@@ -30,10 +30,18 @@ _$_ComicDto _$$_ComicDtoFromJson(Map<String, dynamic> json) => _$_ComicDto(
       urls: (json['urls'] as List<dynamic>?)
           ?.map((e) => UrlDto.fromJson(e as Map<String, dynamic>))
           .toList(),
-      series: json['series'],
-      variants: json['variants'] as List<dynamic>?,
-      collections: json['collections'] as List<dynamic>?,
-      collectedIssues: json['collectedIssues'] as List<dynamic>?,
+      series: json['series'] == null
+          ? null
+          : CommonSummary.fromJson(json['series'] as Map<String, dynamic>),
+      variants: (json['variants'] as List<dynamic>?)
+          ?.map((e) => CommonSummary.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      collections: (json['collections'] as List<dynamic>?)
+          ?.map((e) => CommonSummary.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      collectedIssues: (json['collectedIssues'] as List<dynamic>?)
+          ?.map((e) => CommonSummary.fromJson(e as Map<String, dynamic>))
+          .toList(),
       dates: (json['dates'] as List<dynamic>?)
           ?.map((e) => ComicDateDto.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -46,10 +54,27 @@ _$_ComicDto _$$_ComicDtoFromJson(Map<String, dynamic> json) => _$_ComicDto(
       images: (json['images'] as List<dynamic>?)
           ?.map((e) => ImageDto.fromJson(e as Map<String, dynamic>))
           .toList(),
-      creators: json['creators'],
-      characters: json['characters'],
-      stories: json['stories'],
-      events: json['events'],
+      creators: json['creators'] == null
+          ? null
+          : GenericList<CommonSummary>.fromJson(
+              json['creators'] as Map<String, dynamic>,
+              (value) => CommonSummary.fromJson(value as Map<String, dynamic>)),
+      characters: json['characters'] == null
+          ? null
+          : GenericList<CommonSummary>.fromJson(
+              json['characters'] as Map<String, dynamic>,
+              (value) => CommonSummary.fromJson(value as Map<String, dynamic>)),
+      stories: json['stories'] == null
+          ? null
+          : GenericList<StorySummaryDto>.fromJson(
+              json['stories'] as Map<String, dynamic>,
+              (value) =>
+                  StorySummaryDto.fromJson(value as Map<String, dynamic>)),
+      events: json['events'] == null
+          ? null
+          : GenericList<CommonSummary>.fromJson(
+              json['events'] as Map<String, dynamic>,
+              (value) => CommonSummary.fromJson(value as Map<String, dynamic>)),
     );
 
 Map<String, dynamic> _$$_ComicDtoToJson(_$_ComicDto instance) =>
@@ -79,8 +104,16 @@ Map<String, dynamic> _$$_ComicDtoToJson(_$_ComicDto instance) =>
       'prices': instance.prices,
       'thumbnail': instance.thumbnail,
       'images': instance.images,
-      'creators': instance.creators,
-      'characters': instance.characters,
-      'stories': instance.stories,
-      'events': instance.events,
+      'creators': instance.creators?.toJson(
+        (value) => value,
+      ),
+      'characters': instance.characters?.toJson(
+        (value) => value,
+      ),
+      'stories': instance.stories?.toJson(
+        (value) => value,
+      ),
+      'events': instance.events?.toJson(
+        (value) => value,
+      ),
     };

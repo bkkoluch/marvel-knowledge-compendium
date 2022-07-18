@@ -53,7 +53,7 @@ class CharactersPageBloc extends Bloc<CharactersPageEvent, CharactersPageState> 
         ];
 
         final CharacterDataContainer characterDataContainerToEmit =
-            state.characterDataContainer!.copyWith(results: newCharacterListToEmit);
+            state.characterDataContainer!.copyWith(results: newCharacterListToEmit.toSet().toList());
 
         emit(
           state.copyWith(

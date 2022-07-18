@@ -24,11 +24,14 @@ class CharactersPageState with _$CharactersPageState {
 
   factory CharactersPageState.initial() => const CharactersPageState(status: CharactersPageStateStatus.initial);
 
+  bool get isInitialState => status == CharactersPageStateStatus.initial;
+
   bool get isCharactersWrapperLoaded => status == CharactersPageStateStatus.charactersWrapperLoaded;
 
   bool get isLoadingNewCharacters => status == CharactersPageStateStatus.loadingNewCharacters;
 
-  bool get areMoreCharactersAvailable => characterDataContainer!.results!.length < characterDataContainer!.total!;
-
   bool get wereCharactersSearched => status == CharactersPageStateStatus.searchSubmitted;
+
+  bool get areMoreCharactersAvailable =>
+      ((characterDataContainer?.results ?? []).length) < (characterDataContainer?.total ?? 0);
 }

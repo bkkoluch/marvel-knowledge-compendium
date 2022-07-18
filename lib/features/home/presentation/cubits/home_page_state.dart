@@ -3,6 +3,8 @@ import 'package:marvel_knowledge_compendium/core/shared_entities/data_container.
 import 'package:marvel_knowledge_compendium/core/shared_entities/data_wrapper.dart';
 import 'package:marvel_knowledge_compendium/features/characters/domain/models/character.dart';
 import 'package:marvel_knowledge_compendium/features/characters/domain/models/character_data_wrapper.dart';
+import 'package:marvel_knowledge_compendium/features/comics/domain/models/comic.dart';
+import 'package:marvel_knowledge_compendium/features/comics/domain/models/comic_data_wrapper.dart';
 
 part 'home_page_state.freezed.dart';
 
@@ -21,6 +23,7 @@ class HomePageState with _$HomePageState {
     required HomePageStateStatus status,
     required List<String> homePageImages,
     CharacterDataWrapper? unfilteredCharacterDataWrapper,
+    ComicDataWrapper? unfilteredComicDataWrapper,
   }) = _HomePageState;
 
   factory HomePageState.initial() => const HomePageState(

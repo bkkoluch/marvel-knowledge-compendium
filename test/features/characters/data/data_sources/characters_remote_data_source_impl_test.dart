@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:marvel_knowledge_compendium/core/error/exceptions.dart';
@@ -7,7 +5,6 @@ import 'package:marvel_knowledge_compendium/core/network/dio_client.dart';
 import 'package:marvel_knowledge_compendium/features/characters/data/data_sources/characters_remote_data_source.dart';
 import 'package:marvel_knowledge_compendium/features/characters/data/data_sources/characters_remote_data_source_impl.dart';
 import 'package:marvel_knowledge_compendium/features/characters/data/dtos/character_data_wrapper_dto.dart';
-import 'package:mocktail/mocktail.dart';
 
 import '../../../../mocks.dart';
 import '../../../../test_data.dart';
@@ -24,29 +21,12 @@ void main() {
     baseSetup();
   });
 
-  void mockDioAdapterWithSuccessfulRequest(Map<String, dynamic> jsonObject) {
-    when(() => dioAdapter.fetch(captureAny(), captureAny(), captureAny())).thenAnswer(
-      (_) async => ResponseBody.fromString(
-        json.encode(jsonObject),
-        200,
-        headers: {
-          Headers.contentTypeHeader: [Headers.jsonContentType]
-        },
-      ),
-    );
-  }
-
-  void mockDioAdapterWithFailedRequest() {
-    final response = ResponseBody.fromString("{}", 400);
-    when(() => dioAdapter.fetch(captureAny(), captureAny(), captureAny())).thenAnswer((_) async => response);
-  }
-
   group('getCharacterList', () {
     test(
       'should return CharacterDataWrapperDto on a successful call',
       () async {
         // Arrange
-        mockDioAdapterWithSuccessfulRequest(tCharacterDataWrapperDtoJSON);
+        mockDioAdapterWithSuccessfulRequest(dioAdapter, tCharacterDataWrapperDtoJSON);
 
         // Act
         final result = await charactersRemoteDataSource.getCharactersList();
@@ -61,7 +41,7 @@ void main() {
       'should return ServerException on a failed call',
       () async {
         // Arrange
-        mockDioAdapterWithFailedRequest();
+        mockDioAdapterWithFailedRequest(dioAdapter);
 
         // Act
         final result = charactersRemoteDataSource.getCharactersList();
@@ -77,7 +57,7 @@ void main() {
       'should return CharacterDataWrapperDto on a successful call',
       () async {
         // Arrange
-        mockDioAdapterWithSuccessfulRequest(tDynamicCharacterWrapperSingleResultJSON);
+        mockDioAdapterWithSuccessfulRequest(dioAdapter, tDynamicCharacterWrapperSingleResultJSON);
 
         // Act
         final result = await charactersRemoteDataSource.getCharacterById(tCharacterId);
@@ -92,7 +72,7 @@ void main() {
       'should return ServerException on a failed call',
       () async {
         // Arrange
-        mockDioAdapterWithFailedRequest();
+        mockDioAdapterWithFailedRequest(dioAdapter);
 
         // Act
         final result = charactersRemoteDataSource.getCharacterById(tCharacterId);
