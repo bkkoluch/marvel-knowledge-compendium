@@ -22,6 +22,7 @@ class MKCSliverSearchAppBarAndListPage<C, S, T> extends StatefulWidget {
   final bool isLoadingNewResults;
   final bool wereResultsSearched;
   final bool areMoreResultsAvailable;
+  final bool isErrorState;
   final String searchAppBarText;
   final String pageOverscrollNoMoreResultsText;
   final String emptySearchResultsText;
@@ -41,6 +42,7 @@ class MKCSliverSearchAppBarAndListPage<C, S, T> extends StatefulWidget {
     required this.pageOverscrollNoMoreResultsText,
     required this.emptySearchResultsText,
     required this.areMoreResultsAvailable,
+    required this.isErrorState,
     required this.dataContainer,
     required this.listItem,
     Key? key,
@@ -71,7 +73,10 @@ class _MKCSliverSearchAppBarAndListPageState<C, S, T> extends State<MKCSliverSea
           if (widget.isInitialState) {
             return const Center(child: const CircularProgressIndicator(color: ColorTokens.brandPrimaryColor));
           }
-          if (widget.isWrapperLoaded || widget.isLoadingNewResults || widget.wereResultsSearched) {
+          if (widget.isWrapperLoaded ||
+              widget.isLoadingNewResults ||
+              widget.wereResultsSearched ||
+              widget.isErrorState) {
             return NotificationListener<ScrollNotification>(
               onNotification: _onScrollNotification,
               child: RawScrollbar(

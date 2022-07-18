@@ -38,9 +38,8 @@ void main() {
     await mockNetworkImagesFor(() => tester.pumpWidget(homePage));
     await mockNetworkImagesFor(() => tester.pump());
 
-    // TODO: Fix the test so all 6 categories are visible
     expect(find.byType(AppBar), findsOneWidget);
-    expect(find.byType(MKCText), findsNWidgets(5));
-    expect(find.byType(Category), findsNWidgets(4));
+    expect(find.byType(MKCText), findsNWidgets(3));
+    expect(find.byType(Category), findsNWidgets(2));
   });
 }

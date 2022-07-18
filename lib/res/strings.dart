@@ -9,6 +9,9 @@ const homePageCreatorsTileText = 'Creators';
 const homePageEventsTileText = 'Events';
 const homePageSeriesTileText = 'Series';
 const homePageStoriesTileText = 'Stories';
+const homePageInfoDialogTitle = 'How the app works';
+const homePageInfoDialogSubtitle =
+    'Enter the category of Marvel related data you\'re interested in and scroll around! \n\nSearch works for the data you have already downloaded, so the more you scrolled, the more results you can get! \n\nEverything you download is also cached, so you won\'t download anything twice. \n\nMore categories to come!';
 
 // CharactersPage
 const charactersPageSearchAppBarText = 'Search character by name';

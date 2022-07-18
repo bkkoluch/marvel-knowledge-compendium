@@ -34,6 +34,7 @@ class _ComicsPageState extends State<ComicsPage> {
           isWrapperLoaded: state.isComicsWrapperLoaded,
           isLoadingNewResults: state.isLoadingNewComics,
           wereResultsSearched: state.wereComicsSearched,
+          isErrorState: state.isErrorState,
           searchAppBarText: strings.comicsPageSearchAppBarText,
           pageOverscrollNoMoreResultsText: strings.comicsPageOverscrollNoMoreCharactersText,
           emptySearchResultsText: strings.comicsPageEmptyListText,

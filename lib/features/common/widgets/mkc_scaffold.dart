@@ -24,7 +24,7 @@ class MKCScaffold extends StatelessWidget {
         backgroundColor: ColorTokens.brandSecondaryColorDarker,
         appBar: AppBar(
           centerTitle: true,
-          title: titleWidget ?? MKCText.titleMd(title!, maxLines: 1),
+          title: titleWidget ?? MKCText.titleMd(title!, maxLines: 1, textAlign: TextAlign.center),
         ),
         body: body,
       ),

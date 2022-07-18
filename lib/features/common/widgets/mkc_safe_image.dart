@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:marvel_knowledge_compendium/core/extensions/string_extensions.dart';
+import 'package:marvel_knowledge_compendium/core/style/color_tokens.dart';
 
 class MKCSafeImage extends StatelessWidget {
   final String? imageUrl;
@@ -18,7 +19,7 @@ class MKCSafeImage extends StatelessWidget {
     this.width,
     this.height,
     this.fit,
-    this.placeholder = const SizedBox.shrink(),
+    this.placeholder = const CircularProgressIndicator(color: ColorTokens.brandPrimaryColor),
     this.errorWidget = const SizedBox.shrink(),
     this.useOldImageOnUrlChange = false,
     this.fadeInDuration = const Duration(milliseconds: 500),
