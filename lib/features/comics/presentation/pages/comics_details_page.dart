@@ -26,7 +26,7 @@ class ComicsDetailsPage extends StatelessWidget {
       ],
       thumbnail: comic.thumbnail!,
       id: comic.id!,
-      stringsToReplace: ['<br>', 'Rated', './'],
+      stringsToReplace: ['<br>', 'Rated', './', '\$', '...'],
       noDescriptionFallbackText: strings.comicDetailsPageNoDescriptionText,
       descriptionFixingBehaviour: DescriptionFixingBehaviour.deleteWholeLinesWithOccurrence,
     );

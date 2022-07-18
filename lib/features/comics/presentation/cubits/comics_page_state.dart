@@ -32,5 +32,7 @@ class ComicsPageState with _$ComicsPageState {
 
   bool get wereComicsSearched => status == ComicsPageStateStatus.searchSubmitted;
 
+  bool get isErrorState => status == ComicsPageStateStatus.error;
+
   bool get areMoreComicsAvailable => ((comicsDataContainer?.results ?? []).length) < (comicsDataContainer?.total ?? 0);
 }

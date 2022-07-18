@@ -11,6 +11,7 @@ import 'package:marvel_knowledge_compendium/features/common/widgets/mkc_scaffold
 import 'package:marvel_knowledge_compendium/features/common/widgets/mkc_text.dart';
 import 'package:marvel_knowledge_compendium/features/home/presentation/cubits/home_page_cubit.dart';
 import 'package:marvel_knowledge_compendium/features/home/presentation/cubits/home_page_state.dart';
+import 'package:marvel_knowledge_compendium/features/home/presentation/dialogs/home_page_info_dialog.dart';
 import 'package:marvel_knowledge_compendium/res/strings.dart' as strings;
 
 class HomePage extends StatefulWidget {
@@ -25,10 +26,11 @@ class _HomePageState extends State<HomePage> {
   final List<String> categoryList = [
     strings.homePageCharactersTileText,
     strings.homePageComicsTileText,
-    strings.homePageCreatorsTileText,
-    strings.homePageEventsTileText,
-    strings.homePageSeriesTileText,
-    strings.homePageStoriesTileText,
+    // TODO: Uncomment whenever next features are created
+    // strings.homePageCreatorsTileText,
+    // strings.homePageEventsTileText,
+    // strings.homePageSeriesTileText,
+    // strings.homePageStoriesTileText,
   ];
 
   void initState() {
@@ -47,21 +49,34 @@ class _HomePageState extends State<HomePage> {
             return const Center(child: const CircularProgressIndicator(color: ColorTokens.brandPrimaryColor));
           }
           return Center(
-            child: GridView.count(
-              crossAxisCount: 2,
-              shrinkWrap: true,
-              crossAxisSpacing: CoreDimensions.paddingL,
-              mainAxisSpacing: CoreDimensions.paddingL,
-              padding: const EdgeInsets.all(CoreDimensions.paddingL),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                ...categoryList.map(
-                  (category) => Category(
-                    title: category,
-                    imageUrl:
-                        categoryList.indexOf(category) < 2 ? state.homePageImages[categoryList.indexOf(category)] : '',
-                    onTap: () => _navigateToPage(category),
-                  ),
-                )
+                const Spacer(),
+                GridView.count(
+                  crossAxisCount: 2,
+                  shrinkWrap: true,
+                  crossAxisSpacing: CoreDimensions.paddingL,
+                  mainAxisSpacing: CoreDimensions.paddingL,
+                  padding: const EdgeInsets.all(CoreDimensions.paddingL),
+                  children: [
+                    ...categoryList.map(
+                      (category) => Category(
+                        title: category,
+                        imageUrl: categoryList.indexOf(category) < 2
+                            ? state.homePageImages[categoryList.indexOf(category)]
+                            : '',
+                        onTap: () => _navigateToPage(category),
+                      ),
+                    )
+                  ],
+                ),
+                const Spacer(),
+                GestureDetector(
+                  onTap: () => HomePageInfoDialog.show(context),
+                  child: const Icon(Icons.info_outline, color: ColorTokens.white),
+                ),
+                const SizedBox(height: CoreDimensions.paddingL),
               ],
             ),
           );

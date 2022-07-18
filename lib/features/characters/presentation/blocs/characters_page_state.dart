@@ -32,6 +32,8 @@ class CharactersPageState with _$CharactersPageState {
 
   bool get wereCharactersSearched => status == CharactersPageStateStatus.searchSubmitted;
 
+  bool get isErrorState => status == CharactersPageStateStatus.error;
+
   bool get areMoreCharactersAvailable =>
       ((characterDataContainer?.results ?? []).length) < (characterDataContainer?.total ?? 0);
 }

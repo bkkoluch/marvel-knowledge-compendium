@@ -36,6 +36,7 @@ class _CharactersPageState extends State<CharactersPage> {
           isWrapperLoaded: state.isCharactersWrapperLoaded,
           isLoadingNewResults: state.isLoadingNewCharacters,
           wereResultsSearched: state.wereCharactersSearched,
+          isErrorState: state.isErrorState,
           searchAppBarText: strings.charactersPageSearchAppBarText,
           pageOverscrollNoMoreResultsText: strings.charactersPageOverscrollNoMoreCharactersText,
           emptySearchResultsText: strings.charactersPageEmptyListText,
