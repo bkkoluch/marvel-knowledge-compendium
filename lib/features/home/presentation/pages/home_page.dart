@@ -6,7 +6,7 @@ import 'package:marvel_knowledge_compendium/core/injector/injector.dart';
 import 'package:marvel_knowledge_compendium/core/services/navigation_service.gr.dart';
 import 'package:marvel_knowledge_compendium/core/style/color_tokens.dart';
 import 'package:marvel_knowledge_compendium/core/style/core_dimensions.dart';
-import 'package:marvel_knowledge_compendium/features/common/widgets/mkc_network_image.dart';
+import 'package:marvel_knowledge_compendium/features/common/widgets/mkc_safe_image.dart';
 import 'package:marvel_knowledge_compendium/features/common/widgets/mkc_scaffold.dart';
 import 'package:marvel_knowledge_compendium/features/common/widgets/mkc_text.dart';
 import 'package:marvel_knowledge_compendium/features/home/presentation/cubits/home_page_cubit.dart';
@@ -57,7 +57,8 @@ class _HomePageState extends State<HomePage> {
                 ...categoryList.map(
                   (category) => Category(
                     title: category,
-                    imageUrl: state.homePageImages[categoryList.indexOf(category)],
+                    imageUrl:
+                        categoryList.indexOf(category) < 2 ? state.homePageImages[categoryList.indexOf(category)] : '',
                     onTap: () => _navigateToPage(category),
                   ),
                 )
@@ -76,7 +77,9 @@ class _HomePageState extends State<HomePage> {
           CharactersRoute(unfilteredCharacterDataWrapper: cubit.state.unfilteredCharacterDataWrapper!),
         );
         break;
-
+      case strings.homePageComicsTileText:
+        context.router.push(ComicsRoute(unfilteredComicDataWrapper: cubit.state.unfilteredComicDataWrapper!));
+        break;
       default:
         () {};
     }
@@ -101,7 +104,13 @@ class Category extends StatelessWidget {
       onTap: onTap,
       child: Stack(
         children: [
-          MKCNetworkImage(imageUrl: imageUrl),
+          SizedBox(
+            width: context.screenWidth,
+            child: MKCSafeImage(
+              imageUrl: imageUrl,
+              fit: BoxFit.fill,
+            ),
+          ),
           Align(
             alignment: Alignment.bottomCenter,
             child: Column(

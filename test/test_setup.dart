@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:marvel_knowledge_compendium/core/injector/injector.dart';
@@ -24,4 +26,22 @@ void registerFallbackValues() {
   registerFallbackValue(RequestOptions(path: ''));
   registerFallbackValue(GetCharactersOrCharacterUseCaseParams());
   registerFallbackValue(tCharacterDataContainer);
+  registerFallbackValue(tComicDataContainer);
+}
+
+void mockDioAdapterWithSuccessfulRequest(HttpClientAdapter dioAdapter, Map<String, dynamic> jsonObject) {
+  when(() => dioAdapter.fetch(captureAny(), captureAny(), captureAny())).thenAnswer(
+    (_) async => ResponseBody.fromString(
+      json.encode(jsonObject),
+      200,
+      headers: {
+        Headers.contentTypeHeader: [Headers.jsonContentType]
+      },
+    ),
+  );
+}
+
+void mockDioAdapterWithFailedRequest(HttpClientAdapter dioAdapter) {
+  final response = ResponseBody.fromString("{}", 400);
+  when(() => dioAdapter.fetch(captureAny(), captureAny(), captureAny())).thenAnswer((_) async => response);
 }

@@ -6,6 +6,10 @@ import 'package:injectable/injectable.dart';
 import 'package:marvel_knowledge_compendium/secrets/keys.dart' as keys;
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
+const String offsetFieldKey = "offset";
+const String limitFieldKey = "limit";
+const int defaultLimit = 100;
+
 const String _apiFieldKey = 'apikey';
 const String _tsFieldKey = 'ts';
 const String _hashFieldKey = 'hash';

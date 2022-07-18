@@ -8,6 +8,9 @@ import 'package:marvel_knowledge_compendium/core/data/dtos/shared/image_dto.dart
 import 'package:marvel_knowledge_compendium/core/data/dtos/shared/text_object_dto.dart';
 import 'package:marvel_knowledge_compendium/core/data/dtos/shared/url_dto.dart';
 import 'package:marvel_knowledge_compendium/core/data/dtos/stories/story_list_dto.dart';
+import 'package:marvel_knowledge_compendium/core/data/dtos/stories/story_summary_dto.dart';
+import 'package:marvel_knowledge_compendium/core/shared_entities/common_summary.dart';
+import 'package:marvel_knowledge_compendium/core/shared_entities/generic_list.dart';
 import 'package:marvel_knowledge_compendium/features/comics/data/dtos/comic_date_dto.dart';
 import 'package:marvel_knowledge_compendium/features/comics/data/dtos/comic_price_dto.dart';
 

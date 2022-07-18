@@ -8,6 +8,12 @@ import 'package:marvel_knowledge_compendium/features/characters/domain/use_cases
 import 'package:marvel_knowledge_compendium/features/characters/domain/use_cases/get_saved_characters_use_case.dart';
 import 'package:marvel_knowledge_compendium/features/characters/domain/use_cases/save_characters_use_case.dart';
 import 'package:marvel_knowledge_compendium/features/characters/presentation/blocs/characters_page_bloc.dart';
+import 'package:marvel_knowledge_compendium/features/comics/data/data_sources/comics_local_data_source.dart';
+import 'package:marvel_knowledge_compendium/features/comics/data/data_sources/comics_remote_data_source.dart';
+import 'package:marvel_knowledge_compendium/features/comics/domain/repositories/comics_repository.dart';
+import 'package:marvel_knowledge_compendium/features/comics/domain/use_cases/get_all_comics_use_case.dart';
+import 'package:marvel_knowledge_compendium/features/comics/domain/use_cases/get_saved_comics_use_case.dart';
+import 'package:marvel_knowledge_compendium/features/comics/domain/use_cases/save_all_comics_use_case.dart';
 import 'package:marvel_knowledge_compendium/features/home/presentation/cubits/home_page_cubit.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -26,9 +32,15 @@ class MockCharactersRemoteDataSource extends Mock implements CharactersRemoteDat
 
 class MockCharactersLocalDataSource extends Mock implements CharactersLocalDataSource {}
 
+class MockComicsRemoteDataSource extends Mock implements ComicsRemoteDataSource {}
+
+class MockComicsLocalDataSource extends Mock implements ComicsLocalDataSource {}
+
 // Repositories
 
 class MockCharactersRepository extends Mock implements CharactersRepository {}
+
+class MockComicsRepository extends Mock implements ComicsRepository {}
 
 // UseCases
 class MockGetCharactersOrCharacterUseCase extends Mock implements GetCharactersOrCharacterUseCase {}
@@ -38,6 +50,12 @@ class MockGetAllCharactersUseCase extends Mock implements GetAllCharactersUseCas
 class MockGetSavedCharactersUseCase extends Mock implements GetSavedCharactersUseCase {}
 
 class MockSaveCharactersUseCase extends Mock implements SaveCharactersUseCase {}
+
+class MockGetAllComicsUseCase extends Mock implements GetAllComicsUseCase {}
+
+class MockGetSavedComicsUseCase extends Mock implements GetSavedComicsUseCase {}
+
+class MockSaveAllComicsUseCase extends Mock implements SaveAllComicsUseCase {}
 
 // Cubits
 class MockHomePageCubit extends Mock implements HomePageCubit {}

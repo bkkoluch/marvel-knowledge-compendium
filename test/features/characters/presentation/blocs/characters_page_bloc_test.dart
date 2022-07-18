@@ -37,7 +37,7 @@ void main() {
 
   group('CharactersPageBloc::_onCharactersPageSaveInitialUnfilteredDataEvent', () {
     blocTest<CharactersPageBloc, CharactersPageState>(
-      'should emit correct on CharactersPageSaveInitialUnfilteredDataEvent when GetSavedCharactersUseCase result is not null',
+      'should emit correct states on CharactersPageSaveInitialUnfilteredDataEvent when GetSavedCharactersUseCase result is not null',
       setUp: () {
         when(() => getSavedCharactersUseCase()).thenAnswer((_) => tCharacterDataContainerFromJSON);
       },
@@ -56,7 +56,7 @@ void main() {
     );
 
     blocTest<CharactersPageBloc, CharactersPageState>(
-      'should emit correct on CharactersPageSaveInitialUnfilteredDataEvent when GetSavedCharactersUseCase result is null',
+      'should emit correct states on CharactersPageSaveInitialUnfilteredDataEvent when GetSavedCharactersUseCase result is null',
       setUp: () {
         when(() => getSavedCharactersUseCase()).thenAnswer((_) => null);
         when(() => saveCharactersUseCase(captureAny())).thenAnswer((_) async => null);
@@ -78,7 +78,7 @@ void main() {
 
   group('CharactersPageBloc::_onCharactersPageLoadMoreCharactersEvent', () {
     blocTest<CharactersPageBloc, CharactersPageState>(
-      'should emit correct on CharactersPageLoadMoreCharactersEvent when GetAllCharactersUseCase is successful',
+      'should emit correct states on CharactersPageLoadMoreCharactersEvent when GetAllCharactersUseCase is successful',
       setUp: () {
         when(() => getSavedCharactersUseCase()).thenAnswer((_) => null);
         when(() => saveCharactersUseCase(captureAny())).thenAnswer((_) async => null);
@@ -118,7 +118,7 @@ void main() {
     );
 
     blocTest<CharactersPageBloc, CharactersPageState>(
-      'should emit correct on CharactersPageLoadMoreCharactersEvent when GetAllCharactersUseCase is not successful',
+      'should emit correct states on CharactersPageLoadMoreCharactersEvent when GetAllCharactersUseCase is not successful',
       setUp: () {
         when(() => getSavedCharactersUseCase()).thenAnswer((_) => null);
         when(() => getAllCharactersUseCase(captureAny())).thenAnswer((_) async => Left(tServerFailure));
@@ -155,7 +155,7 @@ void main() {
 
   group('CharactersPageBloc::_onCharactersPageSearchCharacterByNameEvent', () {
     blocTest<CharactersPageBloc, CharactersPageState>(
-      'should emit correct on CharactersPageSearchCharacterByNameEvent when GetSavedCharactersUseCase result is null',
+      'should emit correct states on CharactersPageSearchCharacterByNameEvent when GetSavedCharactersUseCase result is null',
       setUp: () {
         when(() => getSavedCharactersUseCase()).thenAnswer((_) => null);
       },
@@ -182,7 +182,7 @@ void main() {
     );
 
     blocTest<CharactersPageBloc, CharactersPageState>(
-      'should emit correct on CharactersPageSearchCharacterByNameEvent when GetSavedCharactersUseCase result is not null and event.name is not an empty string',
+      'should emit correct states on CharactersPageSearchCharacterByNameEvent when GetSavedCharactersUseCase result is not null and event.name is not an empty string',
       setUp: () {
         when(() => getSavedCharactersUseCase()).thenAnswer((_) => tCharacterDataContainerFromJSON);
       },

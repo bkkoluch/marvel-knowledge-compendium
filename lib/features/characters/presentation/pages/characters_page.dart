@@ -4,7 +4,7 @@ import 'package:marvel_knowledge_compendium/core/injector/injector.dart';
 import 'package:marvel_knowledge_compendium/features/characters/domain/models/character.dart';
 import 'package:marvel_knowledge_compendium/features/characters/domain/models/character_data_wrapper.dart';
 import 'package:marvel_knowledge_compendium/features/characters/presentation/blocs/bloc.dart';
-import 'package:marvel_knowledge_compendium/features/characters/presentation/widgets/character_list_item.dart';
+import 'package:marvel_knowledge_compendium/features/common/widgets/mkc_list_item.dart';
 import 'package:marvel_knowledge_compendium/features/common/widgets/mkc_sliver_search_app_bar_and_list_page.dart';
 
 class CharactersPage extends StatefulWidget {
@@ -38,7 +38,7 @@ class _CharactersPageState extends State<CharactersPage> {
           areMoreResultsAvailable: state.areMoreCharactersAvailable,
           dataContainer: state.characterDataContainer,
           // Passing dynamic as error occurs when passing a correct type (Character)
-          listItem: (dynamic character) => CharacterListItem(character: character),
+          listItem: (dynamic character) => MKCListItem(character: character),
         );
       },
     );

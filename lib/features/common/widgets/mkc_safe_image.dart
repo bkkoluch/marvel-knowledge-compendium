@@ -28,7 +28,6 @@ class MKCSafeImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('URL: $imageUrl');
     return imageUrl.isBlank() || !_isValidImageUri
         ? placeholder
         : CachedNetworkImage(

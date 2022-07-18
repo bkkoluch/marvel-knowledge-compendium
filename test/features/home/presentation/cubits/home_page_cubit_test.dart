@@ -2,9 +2,8 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:marvel_knowledge_compendium/core/injector/injector.dart';
-import 'package:marvel_knowledge_compendium/features/characters/domain/models/character.dart';
-import 'package:marvel_knowledge_compendium/features/characters/domain/models/character_data_wrapper.dart';
 import 'package:marvel_knowledge_compendium/features/characters/domain/use_cases/get_all_characters_use_case.dart';
+import 'package:marvel_knowledge_compendium/features/comics/domain/use_cases/get_all_comics_use_case.dart';
 import 'package:marvel_knowledge_compendium/features/home/presentation/cubits/cubit.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -14,17 +13,10 @@ import '../../../../test_data.dart';
 void main() {
   final HomePageState initialState = HomePageState.initial();
   final GetAllCharactersUseCase getAllCharactersUseCase = MockGetAllCharactersUseCase();
+  final GetAllComicsUseCase getAllComicsUseCase = MockGetAllComicsUseCase();
 
   setUpAll(() => getIt.registerFactory<GetAllCharactersUseCase>(() => getAllCharactersUseCase));
-
-  List<Character>? filterOutImproperCharacters(CharacterDataWrapper characterDataWrapper) =>
-      characterDataWrapper.data?.results
-          ?.where(
-            (character) =>
-                character.thumbnail?.properImagePath != null &&
-                !character.thumbnail!.properImagePath!.contains('image_not_available'),
-          )
-          .toList();
+  setUpAll(() => getIt.registerFactoryAsync<GetAllComicsUseCase>(() async => getAllComicsUseCase));
 
   test(
     'HomePageCubit::initialState',
@@ -36,8 +28,11 @@ void main() {
 
   group('HomePageCubit::loadHomePageImages', () {
     blocTest<HomePageCubit, HomePageState>(
-      'should emit correct states when GetAllCharactersUseCase is successful',
-      setUp: () => when(() => getAllCharactersUseCase()).thenAnswer((_) async => Right(tCharacterDataWrapper)),
+      'should emit correct states when GetAllCharactersUseCase and GetAllComicsUseCase are successful',
+      setUp: () {
+        when(() => getAllCharactersUseCase()).thenAnswer((_) async => Right(tCharacterDataWrapper));
+        when(() => getAllComicsUseCase()).thenAnswer((_) async => Right(tComicDataWrapper));
+      },
       build: () => HomePageCubit(),
       act: (bloc) => bloc.loadHomePageImages(),
       expect: () => <HomePageState>[
@@ -45,9 +40,10 @@ void main() {
         initialState.copyWith(
           status: HomePageStateStatus.loaded,
           unfilteredCharacterDataWrapper: tCharacterDataWrapper,
+          unfilteredComicDataWrapper: tComicDataWrapper,
           homePageImages: [
-            ...?filterOutImproperCharacters(tCharacterDataWrapper)
-                ?.map((characterData) => characterData.thumbnail?.properImagePath ?? '')
+            tCharacterDataWrapper.data?.results?.first.thumbnail?.properImagePath ?? '',
+            tComicDataWrapper.data?.results?.first.thumbnail?.properImagePath ?? '',
           ],
         ),
       ],
@@ -56,6 +52,20 @@ void main() {
     blocTest<HomePageCubit, HomePageState>(
       'should emit correct states when GetAllCharactersUseCase returns ServerFailure',
       setUp: () => when(() => getAllCharactersUseCase()).thenAnswer((_) async => Left(tServerFailure)),
+      build: () => HomePageCubit(),
+      act: (bloc) => bloc.loadHomePageImages(),
+      expect: () => <HomePageState>[
+        initialState.copyWith(status: HomePageStateStatus.loading),
+        initialState.copyWith(status: HomePageStateStatus.error)
+      ],
+    );
+
+    blocTest<HomePageCubit, HomePageState>(
+      'should emit correct states when GetAllComicsUseCase returns ServerFailure',
+      setUp: () {
+        when(() => getAllCharactersUseCase()).thenAnswer((_) async => Right(tCharacterDataWrapper));
+        when(() => getAllComicsUseCase()).thenAnswer((_) async => Left(tServerFailure));
+      },
       build: () => HomePageCubit(),
       act: (bloc) => bloc.loadHomePageImages(),
       expect: () => <HomePageState>[

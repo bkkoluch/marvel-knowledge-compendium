@@ -5,10 +5,6 @@ import 'package:marvel_knowledge_compendium/core/network/dio_client.dart';
 import 'package:marvel_knowledge_compendium/features/characters/data/data_sources/characters_remote_data_source.dart';
 import 'package:marvel_knowledge_compendium/features/characters/data/dtos/character_data_wrapper_dto.dart';
 
-const String _offsetFieldKey = "offset";
-const String _limitFieldKey = "limit";
-const int _defaultLimit = 100;
-
 @Injectable(as: CharactersRemoteDataSource)
 class CharactersRemoteDataSourceImpl implements CharactersRemoteDataSource {
   final DioClient dioClient;
@@ -27,8 +23,8 @@ class CharactersRemoteDataSourceImpl implements CharactersRemoteDataSource {
       final response = await dioClient.dio.get(
         characterId == null ? Endpoints.characters() : Endpoints.characterById(characterId),
         queryParameters: {
-          _offsetFieldKey: offset,
-          _limitFieldKey: _defaultLimit,
+          offsetFieldKey: offset,
+          limitFieldKey: defaultLimit,
         },
       );
       return CharacterDataWrapperDtoExtension.fullFromJson(response.data);

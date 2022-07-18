@@ -31,11 +31,7 @@ class MKCPageListView<T> extends StatelessWidget {
       return const SliverToBoxAdapter(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: CoreDimensions.paddingS),
-          child: Center(
-            child: MKCEmptyListContent(
-              text: strings.charactersPageEmptyListText,
-            ),
-          ),
+          child: Center(child: MKCEmptyListContent(text: strings.charactersPageEmptyListText)),
         ),
       );
     }
