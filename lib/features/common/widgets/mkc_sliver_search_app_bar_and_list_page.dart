@@ -5,7 +5,6 @@ import 'package:marvel_knowledge_compendium/core/style/core_dimensions.dart';
 import 'package:marvel_knowledge_compendium/features/common/widgets/mkc_page_list_view.dart';
 import 'package:marvel_knowledge_compendium/features/common/widgets/mkc_search_app_bar.dart';
 import 'package:marvel_knowledge_compendium/features/common/widgets/mkc_text.dart';
-import 'package:marvel_knowledge_compendium/res/strings.dart' as strings;
 
 const int _showingFloatingActionButtonScrollExtent = 2500;
 const int _overscrollAnimatedContainerDurationInMilliseconds = 200;
@@ -23,6 +22,9 @@ class MKCSliverSearchAppBarAndListPage<C, S, T> extends StatefulWidget {
   final bool isLoadingNewResults;
   final bool wereResultsSearched;
   final bool areMoreResultsAvailable;
+  final String searchAppBarText;
+  final String pageOverscrollNoMoreResultsText;
+  final String emptySearchResultsText;
   final DataContainer<T>? dataContainer;
   final Widget Function(T) listItem;
 
@@ -35,6 +37,9 @@ class MKCSliverSearchAppBarAndListPage<C, S, T> extends StatefulWidget {
     required this.isWrapperLoaded,
     required this.isLoadingNewResults,
     required this.wereResultsSearched,
+    required this.searchAppBarText,
+    required this.pageOverscrollNoMoreResultsText,
+    required this.emptySearchResultsText,
     required this.areMoreResultsAvailable,
     required this.dataContainer,
     required this.listItem,
@@ -83,6 +88,7 @@ class _MKCSliverSearchAppBarAndListPageState<C, S, T> extends State<MKCSliverSea
                       delegate: MKCSearchAppBar(
                         onBackArrowTapped: Navigator.of(context).pop,
                         onChanged: _onSearchAppBarFieldChanged,
+                        searchAppBarText: widget.searchAppBarText,
                       ),
                       pinned: true,
                     ),
@@ -93,6 +99,7 @@ class _MKCSliverSearchAppBarAndListPageState<C, S, T> extends State<MKCSliverSea
                       dataContainer: widget.dataContainer as DataContainer<T>,
                       onNotification: _onScrollNotification,
                       listItem: widget.listItem,
+                      emptySearchResultsText: widget.emptySearchResultsText,
                     ),
                     if (!widget.areMoreResultsAvailable && _isScrolling)
                       SliverFillRemaining(
@@ -108,7 +115,7 @@ class _MKCSliverSearchAppBarAndListPageState<C, S, T> extends State<MKCSliverSea
                                 const Flexible(child: SizedBox(height: CoreDimensions.paddingXM)),
                                 Flexible(
                                   child: MKCText.body(
-                                    strings.charactersPageOverscrollNoMoreCharactersText,
+                                    widget.pageOverscrollNoMoreResultsText,
                                     color: ColorTokens.white,
                                     textAlign: TextAlign.center,
                                   ),

@@ -20,3 +20,12 @@ const characterDetailsPageNoComicsAppearancesText = 'This character didn\'t have
 const characterDetailsPageNoSeriesAppearancesText = 'This character didn\'t have any series appearances.';
 const characterDetailsPageNoStoriesAppearancesText = 'This character didn\'t have any stories appearances.';
 const characterDetailsPageNoDescriptionText = 'This character does not have description in Marvel books yet.';
+
+// ComicsPage
+const comicsPageSearchAppBarText = 'Search comic by name';
+const comicsPageEmptyListText = 'No comics are available, re-enter the page or search for a different name.';
+const comicsPageOverscrollNoMoreCharactersText = 'No more comics available.';
+
+// ComicDetailsPage
+const comicDetailsPageNoDescriptionText = 'This comic does not have description in Marvel books yet.';
+const comicDetailsPagePageCountText = 'Page count:';

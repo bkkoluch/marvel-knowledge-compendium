@@ -21,7 +21,7 @@ class CharacterDetailsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return MKCDetailsScaffold(
       name: character.name!,
-      description: _characterDescription,
+      description: character.description!,
       children: [
         _comicsAppearances(),
         _seriesAppearances(),
@@ -29,6 +29,8 @@ class CharacterDetailsPage extends StatelessWidget {
       ],
       thumbnail: character.thumbnail!,
       id: character.id!,
+      noDescriptionFallbackText: strings.characterDetailsPageNoDescriptionText,
+      stringsToReplace: _wronglyFormattedStringsToReplace,
     );
   }
 
@@ -84,19 +86,4 @@ class CharacterDetailsPage extends StatelessWidget {
   Widget _appearanceText(String text) => _detailsText('- $text');
 
   Widget _detailsText(String text) => MKCText.body(text, color: ColorTokens.white);
-
-  String get _characterDescription {
-    String? description = character.description;
-    if (description != null && description != '') {
-      // Sometimes MarvelAPI returns wrongly formatted descriptions, for example randomly containing HTML tags
-      for (final String invalidString in _wronglyFormattedStringsToReplace) {
-        if (description!.contains(invalidString)) {
-          description = description.replaceAll(invalidString, '');
-        }
-      }
-      return description!;
-    } else {
-      return strings.characterDetailsPageNoDescriptionText;
-    }
-  }
 }

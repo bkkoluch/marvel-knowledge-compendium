@@ -37,8 +37,8 @@ class DioClient {
 
     final BaseOptions options = BaseOptions(
       baseUrl: baseUrl,
-      connectTimeout: 10000,
-      receiveTimeout: 10000,
+      connectTimeout: 30000,
+      receiveTimeout: 30000,
       headers: headers,
       queryParameters: {_tsFieldKey: ts, _apiFieldKey: keys.apiPublicKey, _hashFieldKey: hash},
     );

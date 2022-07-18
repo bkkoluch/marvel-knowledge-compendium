@@ -6,6 +6,7 @@ import 'package:marvel_knowledge_compendium/features/characters/domain/models/ch
 import 'package:marvel_knowledge_compendium/features/characters/presentation/blocs/bloc.dart';
 import 'package:marvel_knowledge_compendium/features/common/widgets/mkc_list_item.dart';
 import 'package:marvel_knowledge_compendium/features/common/widgets/mkc_sliver_search_app_bar_and_list_page.dart';
+import 'package:marvel_knowledge_compendium/res/strings.dart' as strings;
 
 class CharactersPage extends StatefulWidget {
   final CharacterDataWrapper unfilteredCharacterDataWrapper;
@@ -35,6 +36,9 @@ class _CharactersPageState extends State<CharactersPage> {
           isWrapperLoaded: state.isCharactersWrapperLoaded,
           isLoadingNewResults: state.isLoadingNewCharacters,
           wereResultsSearched: state.wereCharactersSearched,
+          searchAppBarText: strings.charactersPageSearchAppBarText,
+          pageOverscrollNoMoreResultsText: strings.charactersPageOverscrollNoMoreCharactersText,
+          emptySearchResultsText: strings.charactersPageEmptyListText,
           areMoreResultsAvailable: state.areMoreCharactersAvailable,
           dataContainer: state.characterDataContainer,
           // Passing dynamic as error occurs when passing a correct type (Character)

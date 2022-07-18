@@ -6,6 +6,7 @@ import 'package:marvel_knowledge_compendium/features/comics/domain/models/comic_
 import 'package:marvel_knowledge_compendium/features/comics/presentation/cubits/cubit.dart';
 import 'package:marvel_knowledge_compendium/features/common/widgets/mkc_list_item.dart';
 import 'package:marvel_knowledge_compendium/features/common/widgets/mkc_sliver_search_app_bar_and_list_page.dart';
+import 'package:marvel_knowledge_compendium/res/strings.dart' as strings;
 
 class ComicsPage extends StatefulWidget {
   final ComicDataWrapper unfilteredComicDataWrapper;
@@ -33,6 +34,9 @@ class _ComicsPageState extends State<ComicsPage> {
           isWrapperLoaded: state.isComicsWrapperLoaded,
           isLoadingNewResults: state.isLoadingNewComics,
           wereResultsSearched: state.wereComicsSearched,
+          searchAppBarText: strings.comicsPageSearchAppBarText,
+          pageOverscrollNoMoreResultsText: strings.comicsPageOverscrollNoMoreCharactersText,
+          emptySearchResultsText: strings.comicsPageEmptyListText,
           areMoreResultsAvailable: state.areMoreComicsAvailable,
           dataContainer: state.comicsDataContainer,
           // Passing dynamic as error occurs when passing a correct type (Character)

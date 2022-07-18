@@ -3,7 +3,6 @@ import 'package:marvel_knowledge_compendium/core/shared_entities/data_container.
 import 'package:marvel_knowledge_compendium/core/style/color_tokens.dart';
 import 'package:marvel_knowledge_compendium/core/style/core_dimensions.dart';
 import 'package:marvel_knowledge_compendium/features/common/widgets/mkc_empty_list_content.dart';
-import 'package:marvel_knowledge_compendium/res/strings.dart' as strings;
 
 class MKCPageListView<T> extends StatelessWidget {
   final bool isLoadingNewCharacters;
@@ -12,6 +11,7 @@ class MKCPageListView<T> extends StatelessWidget {
   final DataContainer<T>? dataContainer;
   final NotificationListenerCallback<ScrollNotification> onNotification;
   final Widget Function(T) listItem;
+  final String emptySearchResultsText;
 
   const MKCPageListView({
     required this.isLoadingNewCharacters,
@@ -20,6 +20,7 @@ class MKCPageListView<T> extends StatelessWidget {
     required this.dataContainer,
     required this.onNotification,
     required this.listItem,
+    required this.emptySearchResultsText,
     Key? key,
   }) : super(key: key);
 
@@ -28,10 +29,10 @@ class MKCPageListView<T> extends StatelessWidget {
     final List<T> results = dataContainer?.results ?? [];
 
     if (results.isEmpty) {
-      return const SliverToBoxAdapter(
+      return SliverToBoxAdapter(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: CoreDimensions.paddingS),
-          child: Center(child: MKCEmptyListContent(text: strings.charactersPageEmptyListText)),
+          child: Center(child: MKCEmptyListContent(text: emptySearchResultsText)),
         ),
       );
     }
