@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.marvel_knowledge_compendium">
+    package="com.bkdev.marvel_knowledge_compendium">
    <application
         android:label="Marvelpedia"
         android:name="${applicationName}"
