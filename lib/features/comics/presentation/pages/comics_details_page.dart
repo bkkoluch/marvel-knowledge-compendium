@@ -19,7 +19,7 @@ class ComicsDetailsPage extends StatelessWidget {
       description: _comicDescription,
       children: [
         MKCText.body(
-          '${strings.comicDetailsPagePageCountText} ${comic.pageCount}',
+          '${strings.comicDetailsPagePageCountText} $_pageCount',
           color: ColorTokens.white,
         ),
         const SizedBox(height: CoreDimensions.paddingL),
@@ -37,6 +37,14 @@ class ComicsDetailsPage extends StatelessWidget {
       return comic.textObjects!.first.text!;
     } else {
       return '';
+    }
+  }
+
+  String get _pageCount {
+    if (comic.pageCount == null || comic.pageCount == 0) {
+      return strings.unknownString;
+    } else {
+      return comic.pageCount.toString();
     }
   }
 }

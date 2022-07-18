@@ -1,3 +1,6 @@
+// Common
+const unknownString = 'unknown';
+
 // HomePage
 const homePageAppBarTitleText = 'Marvel Knowledge Compendium';
 const homePageCharactersTileText = 'Characters';
