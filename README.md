@@ -4,10 +4,6 @@ A Flutter app letting you find information related to Marvel universe and it's h
 
 Project was created with Clean Architecture in mind.
 
-##### PlayStore:
-
-<a href='https://play.google.com/store/apps/details?id=com.bkdev.marvel_knowledge_compendium'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' width="170"/></a>
-
 ## Project presentation:
 | | | | | | |
 |-|-|-|-|-|-|
