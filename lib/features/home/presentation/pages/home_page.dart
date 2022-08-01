@@ -121,10 +121,7 @@ class Category extends StatelessWidget {
         children: [
           SizedBox(
             width: context.screenWidth,
-            child: MKCSafeImage(
-              imageUrl: imageUrl,
-              fit: BoxFit.fill,
-            ),
+            child: MKCSafeImage(imageUrl: imageUrl, fit: BoxFit.fill),
           ),
           Align(
             alignment: Alignment.bottomCenter,
@@ -136,11 +133,7 @@ class Category extends StatelessWidget {
                     Container(
                       width: context.screenWidth,
                       color: ColorTokens.black.withOpacity(0.5),
-                      child: MKCText.titleSm(
-                        title,
-                        color: ColorTokens.white,
-                        textAlign: TextAlign.center,
-                      ),
+                      child: MKCText.titleSm(title, color: ColorTokens.white, textAlign: TextAlign.center),
                     ),
                   ],
                 ),

@@ -24,7 +24,7 @@ class MKCSearchAppBar extends SliverPersistentHeaderDelegate {
   Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
     final double adjustedShrinkOffset = shrinkOffset > minExtent ? minExtent : shrinkOffset;
     final double offset = (minExtent - adjustedShrinkOffset) * 0.5;
-    final double topPadding = MediaQuery.of(context).padding.top + 16;
+    final double topPadding = context.padding.top + CoreDimensions.paddingM;
 
     return Stack(
       children: [
@@ -46,7 +46,7 @@ class MKCSearchAppBar extends SliverPersistentHeaderDelegate {
           right: context.screenWidth / 2,
         ),
         Positioned(
-          top: offset + CoreDimensions.paddingL,
+          top: context.padding.top * 2,
           child: IgnorePointer(
             ignoring: _areImageAndIconVisible(shrinkOffset),
             child: _buildAnimatedOpacity(
@@ -63,8 +63,8 @@ class MKCSearchAppBar extends SliverPersistentHeaderDelegate {
         Positioned(
           top: topPadding + offset,
           child: SearchBar(searchAppBarText: searchAppBarText, onChanged: onChanged),
-          left: 16,
-          right: 16,
+          left: CoreDimensions.paddingM,
+          right: CoreDimensions.paddingM,
         ),
       ],
     );
